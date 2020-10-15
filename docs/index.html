@@ -47,47 +47,66 @@
             <header>
                 <h2>Idea</h2>
             </header>
-            <p>
-                L'idea dietro a Ethib è quella di creare una applicazione web che permetta lo sharing etico di libri in formati pdf o ebook, è ammessa quindi la ricerca di testi tramite l'apposito form, il download ed anche la possibilità di lasciare una recensione testuale ed un voto.
-                L'utente deve quindi registrarsi per caricare un libro e per lasciare recensioni, può inoltre caricare contenuti ma mantenerli privati ed accessibili tramite una url.
-                Si prevede inoltre l'uso di API esterne che forniscano i dati di un libro a partire dal codice ISBN per rendere la pagina di un libro piena di informazioni che però l'utente non è tenuto a fornire.
-            </p>
+            <div class="post">
+                <p>
+                    L'idea dietro a Ethib è quella di creare una applicazione web che permetta lo sharing etico di libri in formati pdf o ebook, è ammessa quindi la ricerca di testi tramite l'apposito form, il download ed anche la possibilità di lasciare una recensione testuale ed un voto.
+                    L'utente deve quindi registrarsi per caricare un libro e per lasciare recensioni, può inoltre caricare contenuti ma mantenerli privati ed accessibili tramite una url.
+                    Si prevede inoltre l'uso di API esterne che forniscano i dati di un libro a partire dal codice ISBN per rendere la pagina di un libro piena di informazioni che però l'utente non è tenuto a fornire.
+                </p>
+            </div>
         </section>
         <section id="database">
             <header>
                 <h2>Database</h2>
             </header>
-            <p>
-                Come Database si decide di usare MySQL, un RDBMS che ha una forte integrazione con il PHP, linguaggio usato per la creazione della vera e propria logica di business. <br/>
-                Il diagramma ER del database è:
-                <img src="media/ER.png" alt="">
-                Si decide di inserire le seguenti ridondanze per ottimizzare l'ottenimento di informazioni richieste spesso:
-            </p>
+            <div class="post">
+                <p>
+                    Come Database si decide di usare MySQL, un RDBMS che ha una forte integrazione con il PHP, linguaggio usato per la creazione della vera e propria logica di business. <br/>
+                    Il diagramma ER del database è:
+                    <img src="media/ER.png" alt="ER base del progetto">
+                    Si decide di inserire le seguenti ridondanze per ottimizzare l'ottenimento di informazioni richieste spesso:
+                </p>
+                <ul>
+                    <li>mark_sum su Book: somma di tutti i voti dati ad un singolo libro</li>
+                    <li>mark_count su Book: conteggio di voti dati ad un singolo libro</li>
+                </ul>
+                <p>
+                    Il diagramma ER finale risulta quindi essere:
+                    <img src="media/ER_completo.png" alt="ER con ridondanze">
+                    L'implementazione in codice MySQL per la generazione del database è raggiungibile cliccando <a href="generate.sql">qui</a>
+                </p>
+            </div>
         </section>
         <section id="mockup">
             <header>
                 <h2>Mockup</h2>
             </header>
-            <p>
+            <div class="post">
+                <p>
 
-            </p>
+                </p>
+            </div>
         </section>
         <section id="models">
             <header>
                 <h2>Classi modello per il database</h2>
             </header>
-            <p>
+            <div class="post">
+                <p>
 
-            </p>
+                </p>
+            </div>
         </section>
         <section id="ISBN API">
             <header>
                 <h2></h2>
             </header>
-            <p>
-                https://isbndb.com/apidocs/v2
-                https://openlibrary.org/dev/docs/api/books
-            </p>
+            <div class="post">
+                <p>
+                    https://isbndb.com/apidocs/v2
+                    https://openlibrary.org/dev/docs/api/books
+                </p>
+            </div>
         </section>
     </main>
 </body>
