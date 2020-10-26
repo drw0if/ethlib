@@ -1,4 +1,7 @@
 <?php
+
+    require_once "ORM.php";
+
     class User extends Entity{
         public $user_id;
         public $username;

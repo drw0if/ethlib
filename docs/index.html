@@ -86,7 +86,7 @@
             <div class="post">
                 <p>
                     Si decide di rendere semplice l'interazione con il database creando un micro ORM con solo le funzionalità necessarie ad eseguire il ciclo CRUD. <br>
-                    Si inizia quindi creando una classe astratta Entity che implementi dei metodi generali save() per il salvataggio (sia insert che update) e filter_by() per il retrieve di oggetti con la possibilità di filtrare.
+                    Si inizia quindi creando una classe astratta Entity che implementi dei metodi generali save() per il salvataggio (sia insert che update), filter_by() per il retrieve di oggetti con la possibilità di filtrare e delete() per cancellare il corrente record dalla tabella.
                     Questa classe prende in automatico le proprietà pubbliche delle classi che la estendono e creano automaticamente le query necessarie per l'interazione con MySQL. <br>
                     Non ci basterà altro che creare classi che la estendono e ricopiarvi all'interno i nomi esatti delle colonne date alla tabella di MySQL per avere tutto mappato. <br>
                     La generica connessione al database è gestita tramite l'oggetto DB che rispetta il design pattern del Singleton in modo da avere al massimo una sola connessione 

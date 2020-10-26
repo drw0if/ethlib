@@ -7,8 +7,6 @@
     require_once "DB.php";
 
     abstract class Entity{
-        private $db = null;
-
         private function buildInsertQuery($props){
             //Remove id entry
             unset($props[static::getTableId()]);
@@ -87,6 +85,21 @@
 
         private function getProperties(){
             return get_object_vars($this);
+        }
+
+        public function delete(){
+            $tableIdProp = $this->getTableId();
+
+            $query = "DELETE FROM {$this->getTableName()} WHERE {$tableIdProp} = ?;";
+            $params = [$this->{$tableIdProp}];
+
+            try{
+                $db = DB::getInstance();
+                $db->exec($query, $params);
+            }
+            catch(Exception $e){
+                ThrowDatabaseError();
+            }
         }
 
         public static function filter_by($where = []){
