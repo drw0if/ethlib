@@ -25,10 +25,10 @@
                     <a href="#database">Database</a>
                 </li>
                 <li class="menu__item">
-                    <a href="#mockup">Mockup</a>
+                    <a href="#models">Classi modello per il database</a>
                 </li>
                 <li class="menu__item">
-                    <a href="#models">Classi modello per il database</a>
+                    <a href="#mockup">Mockup</a>
                 </li>
                 <li class="menu__item">
                     <a href=""></a>
@@ -79,19 +79,24 @@
                 </p>
             </div>
         </section>
-        <section id="mockup">
-            <header>
-                <h2>Mockup</h2>
-            </header>
-            <div class="post">
-                <p>
-
-                </p>
-            </div>
-        </section>
         <section id="models">
             <header>
                 <h2>Classi modello per il database</h2>
+            </header>
+            <div class="post">
+                <p>
+                    Si decide di rendere semplice l'interazione con il database creando un micro ORM con solo le funzionalità necessarie ad eseguire il ciclo CRUD. <br>
+                    Si inizia quindi creando una classe astratta Entity che implementi dei metodi generali save() per il salvataggio (sia insert che update) e filter_by() per il retrieve di oggetti con la possibilità di filtrare.
+                    Questa classe prende in automatico le proprietà pubbliche delle classi che la estendono e creano automaticamente le query necessarie per l'interazione con MySQL. <br>
+                    Non ci basterà altro che creare classi che la estendono e ricopiarvi all'interno i nomi esatti delle colonne date alla tabella di MySQL per avere tutto mappato. <br>
+                    La generica connessione al database è gestita tramite l'oggetto DB che rispetta il design pattern del Singleton in modo da avere al massimo una sola connessione 
+                    attiva al database condivisa tra tutte le entità che ne avranno necessità di utilizzo.
+                </p>
+            </div>
+        </section>
+        <section id="mockup">
+            <header>
+                <h2>Mockup</h2>
             </header>
             <div class="post">
                 <p>
