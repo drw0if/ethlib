@@ -9,16 +9,9 @@
     abstract class Entity{
         private $db = null;
 
-        /*
-            Takes an array of class public properties and builds up
-            - *attributeList* with the props name
-            - *valuesPlaceholder* for the PDO object
-            - *params* list for the PDO execution
-        */
-
         private function buildInsertQuery($props){
             //Remove id entry
-            unset($props[$this->getTableId()]);
+            unset($props[static::getTableId()]);
 
             $attributeList = [];
             $valuesPlaceholder = [];
@@ -46,38 +39,42 @@
             $setList = [];
             $params = [];
 
+            //Collect query parts
             foreach($props as $k => $v){
                 $setList[] = "{$k} = ?";
                 $params[] = $v;
             }
 
+            //Build strings out of lists
             $setList = implode(', ', $setList);
-            $tableId = $this->getTableId();
+            $tableId = static::getTableId();
 
             //Build proper query
-            $query = "UPDATE {$this->getTableName()} SET {$setList} WHERE {$tableId} = {$this->{$tableId}}";
+            $query = "UPDATE {$this->getTableName()} SET {$setList} WHERE {$tableId} = {$this->$tableId};";
+
+            //Return query and params list
             return array($query, $params);
         }
 
         public function save(){
-            $props = getProperties($this);
-            $tableId = $this->getTableId();
+            $props = static::getProperties();
+            $tableId = static::getTableId();
 
             $query = '';
             $params = [];
+            $tmp = null;
 
             if($this->$tableId === null){
                 //Build insert query
-                $tmp = $this->buildInsertQuery($props);
-                $query = $tmp[0];
-                $params = $tmp[1];
+                $tmp = static::buildInsertQuery($props);
             }
             else{
                 //build update query
-                $tmp = $this->buildUpdateQuery($props);
-                $query = $tmp[0];
-                $params = $tmp[1];
+                $tmp = static::buildUpdateQuery($props);
             }
+
+            $query = $tmp[0];
+            $params = $tmp[1];
 
             try{
                 $db = DB::getInstance();
@@ -88,16 +85,53 @@
             }
         }
 
-        public function filter_by(){
-
+        private function getProperties(){
+            return get_object_vars($this);
         }
 
-        private function getTableName(){
-            return strtolower(get_class($this));
+        public static function filter_by($where = []){
+            $tableName = static::getTableName();
+
+            //Build general query
+            $query = "SELECT * FROM {$tableName}";
+
+            $whereClause = [];
+            $params = [];
+
+            //Collect query parts
+            foreach(static::getPropertyList() as $k => $v){
+                if(array_key_exists($k, $where)){
+                    $whereClause[] = "{$k} = ?";
+                    $params[] = $where[$k];
+                }
+            }
+
+            //complete query
+            if(count($whereClause) > 0){
+                $whereClause = implode(' AND ', $whereClause);
+                $query .= " WHERE {$whereClause};";
+            }
+            else $query .= ";";
+
+            try{
+                $db = DB::getInstance();
+                return $db->exec($query, $params);
+            }
+            catch(Exception $e){
+                throwDatabaseError();
+            }
         }
 
-        private function getTableId(){
-            return $this->getTableName() . '_id';
+        private static function getPropertyList(){
+            return get_class_vars(static::class);
+        }
+
+        private static function getTableName(){
+            return strtolower(static::class);
+        }
+
+        private static function getTableId(){
+            return static::getTableName() . '_id';
         }
 
         /* Prevent cloning */
@@ -120,11 +154,5 @@
             $this->isbn = $isbn;
         }
     }
-
-
-    $b = new Book('123asd');
-    $b->book_id = 1;
-    $b->save();
-
 
 ?>

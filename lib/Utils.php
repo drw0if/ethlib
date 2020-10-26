@@ -6,11 +6,7 @@
             exit();
         }
     }
-
-    /* Ritorna gli attributi pubblici di un oggetto */
-    function getProperties($obj){
-        return get_object_vars($obj);
-    }
+    exitIfRequested(__FILE__);
 
     function throwDatabaseError(){
         http_response_code(500);
