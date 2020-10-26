@@ -1,158 +1,56 @@
 <?php
-    require_once "Utils.php";
-
-    /* Evito che la pagina possa essere richiesta direttamente */
-    //exitIfRequested(__FILE__);
-
-    require_once "DB.php";
-
-    abstract class Entity{
-        private $db = null;
-
-        private function buildInsertQuery($props){
-            //Remove id entry
-            unset($props[static::getTableId()]);
-
-            $attributeList = [];
-            $valuesPlaceholder = [];
-            $params = [];
-
-            //Collect query parts
-            foreach ($props as $k => $v) {
-                $attributeList[] = $k;
-                $valuesPlaceholder[] = '?';
-                $params[] = $v;
-            }
-
-            //Build strings out of lists
-            $attributeList = implode(', ', $attributeList);
-            $valuesPlaceholder = implode(', ', $valuesPlaceholder);
-
-            //Build proper query
-            $query = "INSERT INTO {$this->getTableName()}({$attributeList}) VALUES ({$valuesPlaceholder});";
-
-            //Return query and params list
-            return array($query, $params);
-        }
-
-        private function buildUpdateQuery($props){
-            $setList = [];
-            $params = [];
-
-            //Collect query parts
-            foreach($props as $k => $v){
-                $setList[] = "{$k} = ?";
-                $params[] = $v;
-            }
-
-            //Build strings out of lists
-            $setList = implode(', ', $setList);
-            $tableId = static::getTableId();
-
-            //Build proper query
-            $query = "UPDATE {$this->getTableName()} SET {$setList} WHERE {$tableId} = {$this->$tableId};";
-
-            //Return query and params list
-            return array($query, $params);
-        }
-
-        public function save(){
-            $props = static::getProperties();
-            $tableId = static::getTableId();
-
-            $query = '';
-            $params = [];
-            $tmp = null;
-
-            if($this->$tableId === null){
-                //Build insert query
-                $tmp = static::buildInsertQuery($props);
-            }
-            else{
-                //build update query
-                $tmp = static::buildUpdateQuery($props);
-            }
-
-            $query = $tmp[0];
-            $params = $tmp[1];
-
-            try{
-                $db = DB::getInstance();
-                $db->exec($query, $params);
-            }
-            catch(Exception $e){
-                ThrowDatabaseError();
-            }
-        }
-
-        private function getProperties(){
-            return get_object_vars($this);
-        }
-
-        public static function filter_by($where = []){
-            $tableName = static::getTableName();
-
-            //Build general query
-            $query = "SELECT * FROM {$tableName}";
-
-            $whereClause = [];
-            $params = [];
-
-            //Collect query parts
-            foreach(static::getPropertyList() as $k => $v){
-                if(array_key_exists($k, $where)){
-                    $whereClause[] = "{$k} = ?";
-                    $params[] = $where[$k];
-                }
-            }
-
-            //complete query
-            if(count($whereClause) > 0){
-                $whereClause = implode(' AND ', $whereClause);
-                $query .= " WHERE {$whereClause};";
-            }
-            else $query .= ";";
-
-            try{
-                $db = DB::getInstance();
-                return $db->exec($query, $params);
-            }
-            catch(Exception $e){
-                throwDatabaseError();
-            }
-        }
-
-        private static function getPropertyList(){
-            return get_class_vars(static::class);
-        }
-
-        private static function getTableName(){
-            return strtolower(static::class);
-        }
-
-        private static function getTableId(){
-            return static::getTableName() . '_id';
-        }
-
-        /* Prevent cloning */
-        private function __clone(){}
+    class User extends Entity{
+        public $user_id;
+        public $username;
+        public $email;
+        public $hash;
+        public $salt;
     }
 
     class Book extends Entity{
-
-        public $book_id = null;
-        public $hash = null;
-        public $isbn = null;
-        public $local_name = null;
-        public $file_type = null;
-        public $name = null;
-        public $mark_sum = null;
-        public $mark_count = null;
-        public $user_id = null;
-
-        public function __construct($isbn){
-            $this->isbn = $isbn;
-        }
+        public $book_id;
+        public $hash;
+        public $isbn;
+        public $local_name;
+        public $file_type;
+        public $name;
+        public $mark_sum;
+        public $mark_count;
+        public $user_id;
     }
 
+    class Mark extends Entity{
+        public $mark_id;
+        public $value;
+        public $user_id;
+        public $book_id;
+    }
+
+    class Review extends Entity{
+        public $review_id;
+        public $title;
+        public $content;
+    }
+
+    class Author extends Entity{
+        public $author_id;
+        public $name_surname;
+    }
+
+    class Genre extends Entity{
+        public $genre_id;
+        public $name;
+    }
+
+    /*
+    class Author_Book extends Entity{
+        public $author_id;
+        public $book_id;
+    }
+
+    class Genre_Book extends Entity{
+        public $genre_id;
+        public $book_id;
+    }
+    */
 ?>
