@@ -1,10 +1,9 @@
 <?php
 
+    require_once "Utils.php";
+
     /* Evito che la pagina possa essere richiesta direttamente */
-    if (strcasecmp(str_replace('\\', '/', __FILE__), $_SERVER['SCRIPT_FILENAME']) == 0) {
-        http_response_code(404);
-        exit();
-    }
+    exitIfRequested(__FILE__);
 
     /* DB Singleton */
     /* Si usa un singleton per avere al massimo una sola connessione al DB per ogni richiesta */
@@ -40,6 +39,11 @@
             static::$instance = null;
         }
 
+        public function exec($query, $values = []){
+            print_r($query);
+            var_dump($values);
+            return null;
+        }
 
         /* Per evitare che l'oggetto possa essere clonato */
         private function __clone(){
