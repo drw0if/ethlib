@@ -90,7 +90,7 @@ CREATE TABLE `Author_Book`(
 -- --------
 CREATE TABLE `Genre`(
     `genre_id` INT NOT NULL AUTO_INCREMENT,
-    name VARCHAR(200) NOT NULL,
+    `name` VARCHAR(200) NOT NULL,
 
     PRIMARY KEY(`genre_id`)
 )ENGINE=InnoDB DEFAULT CHARSET=latin1;
