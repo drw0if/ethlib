@@ -8,6 +8,7 @@
         public $email;
         public $hash;
         public $salt;
+        public $user_type;
     }
 
     class Book extends Entity{

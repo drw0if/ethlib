@@ -10,6 +10,7 @@ CREATE TABLE `User`(
     `email` VARCHAR(100) NOT NULL,
     `hash` CHAR(64) NOT NULL,
     `salt` CHAR(32) NOT NULL,
+    `user_type` BOOLEAN NOT NULL DEFAULT 0,
 
     PRIMARY KEY (`user_id`)
 )ENGINE=InnoDB DEFAULT CHARSET=latin1;
