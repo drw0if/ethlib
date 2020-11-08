@@ -6,6 +6,10 @@
 
     require_once "DB.php";
 
+    class DefaultValue{
+
+    }
+
     abstract class Entity{
         private function buildInsertQuery($props){
             //Remove id entry
@@ -18,8 +22,13 @@
             //Collect query parts
             foreach ($props as $k => $v) {
                 $attributeList[] = $k;
-                $valuesPlaceholder[] = '?';
-                $params[] = $v;
+                if($v instanceof DefaultValue){
+                    $valuesPlaceholder[] = 'DEFAULT';
+                }
+                else{
+                    $valuesPlaceholder[] = '?';
+                    $params[] = $v;
+                }
             }
 
             //Build strings out of lists
@@ -151,4 +160,7 @@
         private function __clone(){}
     }
 
+    abstract class ManyToMany{
+
+    }
 ?>

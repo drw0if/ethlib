@@ -9,6 +9,11 @@
         public $hash;
         public $salt;
         public $user_type;
+
+        public function __construct(){
+            $this->user_type = new DefaultValue();
+        }
+
     }
 
     class Book extends Entity{
@@ -21,6 +26,12 @@
         public $mark_sum;
         public $mark_count;
         public $user_id;
+
+        public function __construct(){
+            $this->mark_sum = new DefaultValue();
+            $this->mask_count = new DefaultValue();
+        }
+
     }
 
     class Mark extends Entity{
