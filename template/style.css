@@ -1,0 +1,80 @@
+/* https://flatuicolors.com/palette/ca */
+
+html, body{
+    margin: 0px;
+    padding: 0px;
+    height: 100%;
+}
+
+.pageHeader{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #222f3e;
+    color: #c8d6e5;
+}
+
+.logo{
+    display: flex;
+    padding: 10px;
+    align-items: center;
+    font-size: 35px;
+    font-family: monospace;
+}
+
+.search-box {
+    background: #576574;
+    height: 20px;
+    border-radius: 40px;
+    padding: 10px;
+}
+
+.search-box:hover > .search-input {
+    width: 240px;
+    padding: 0 6px;
+}
+
+.search-button {
+    border: none;
+    background: none;
+    outline: none;
+    float: right;
+    cursor: pointer;
+    border-radius: 50%;
+    transition: 0.4s;
+    padding: 0px 2px;
+}
+
+.search-input {
+    border: none;
+    background: none;
+    outline: none;
+    float: left;
+    color: white;
+    font-size: 16px;
+    transition: 0.4s;
+    line-height: 20px;
+    width: 0px;
+}
+
+.navbar{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.navbar ul{
+    list-style: none;
+    margin: 0px;
+}
+
+.nav__item{
+    display: inline;
+}
+
+.nav__item a{
+    color: #c8d6e5;
+    text-decoration: none;
+    padding-right: 10px;
+}
