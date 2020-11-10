@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="template/style.css">
 
     <title>Ethib</title>
 </head>
@@ -27,20 +27,3 @@
     </header>
 
     <main class="page-content">
-
-    </main>
-
-    <footer class="page-footer">
-        <p class="footer-content">
-            Fork me on
-        </p>
-        <a href="https://github.com/drw0if/ethib">
-            <img src="media/images/github-mark.png">
-        </a>
-    </footer>
-
-    <script>
-
-    </script>
-</body>
-</html>
