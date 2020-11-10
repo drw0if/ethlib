@@ -6,10 +6,19 @@
 
     require_once "DB.php";
 
-    class DefaultValue{
+    /* Empty class to represent default value data type */
+    class DefaultValue{}
 
-    }
-
+    /*
+     * Abstract class to model a simple DB Entity
+     * How to use it:
+     * -) Extend it
+     * -) Make public properties named like table column
+     * -) Make id property named like "tableName_id"
+     * -) Create constructor to initialize elements as DEFAULT
+     *     value with DefaultValue class instance or specified values
+     * -) Add all the required methods to use the table as expected
+     */
     abstract class Entity{
         private function buildInsertQuery($props){
             //Remove id entry
