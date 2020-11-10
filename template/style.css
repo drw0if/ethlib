@@ -93,6 +93,7 @@ html, body{
 }
 
 .page-footer img{
+    display: block;
     padding: 20px 0px;
 }
 
@@ -100,6 +101,5 @@ html, body{
     text-align: center;
     color: #c8d6e5;
     font-family: monospace;
-    margin: 0px;
     margin-right: 5px;
 }
