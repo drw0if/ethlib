@@ -4,9 +4,11 @@ html, body{
     margin: 0px;
     padding: 0px;
     height: 100%;
+    display: flex;
+    flex-direction: column;
 }
 
-.pageHeader{
+.page-header{
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -77,4 +79,27 @@ html, body{
     color: #c8d6e5;
     text-decoration: none;
     padding-right: 10px;
+}
+
+.page-content{
+    flex-grow: 2;
+}
+
+.page-footer{
+    background-color: #222f3e;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.page-footer img{
+    padding: 20px 0px;
+}
+
+.footer-content{
+    text-align: center;
+    color: #c8d6e5;
+    font-family: monospace;
+    margin: 0px;
+    margin-right: 5px;
 }
