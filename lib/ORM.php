@@ -8,6 +8,7 @@
 
     /* Empty class to represent default value data type */
     class DefaultValue{}
+    class DuplicateKeyException extends Exception{}
 
     /*
      * Abstract class to model a simple DB Entity
@@ -97,6 +98,9 @@
                 $db->exec($query, $params);
             }
             catch(Exception $e){
+                if($e->errorInfo[1] == '1062'){
+                    throw new DuplicateKeyException();
+                }
                 ThrowDatabaseError();
             }
         }
@@ -151,6 +155,16 @@
             catch(Exception $e){
                 throwDatabaseError();
             }
+        }
+
+        protected static function toObject($record){
+            $obj = new static();
+
+            foreach(static::getPropertyList() as $k => $v){
+                $obj->{$k} = $record[$k];
+            }
+
+            return $obj;
         }
 
         private static function getPropertyList(){

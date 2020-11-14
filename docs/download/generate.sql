@@ -6,10 +6,9 @@ USE ethib;
 -- -------
 CREATE TABLE `User`(
     `user_id` INT NOT NULL AUTO_INCREMENT,
-    `username` VARCHAR(100) NOT NULL,
-    `email` VARCHAR(100) NOT NULL,
-    `hash` CHAR(64) NOT NULL,
-    `salt` CHAR(32) NOT NULL,
+    `username` VARCHAR(100) NOT NULL UNIQUE,
+    `email` VARCHAR(100) NOT NULL UNIQUE,
+    `hash` VARCHAR(255) NOT NULL,
     `user_type` BOOLEAN NOT NULL DEFAULT 0,
 
     PRIMARY KEY (`user_id`)
@@ -106,3 +105,8 @@ CREATE TABLE `Genre_Book`(
     FOREIGN KEY (`genre_id`) REFERENCES `Genre`(`genre_id`),
     FOREIGN KEY (`book_id`) REFERENCES `Book`(`book_id`)
 )ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+INSERT INTO `User`
+    VALUES (DEFAULT, 'admin', 'admin@ethib.com', '$2y$10$HWqQBNpNtYo1SRUfBdAprOlvDZHDIvaLpe4QxU4APAJWixcSCL/CW', 1);
+
+

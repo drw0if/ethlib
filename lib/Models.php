@@ -7,11 +7,30 @@
         public $username;
         public $email;
         public $hash;
-        public $salt;
         public $user_type;
 
         public function __construct(){
             $this->user_type = new DefaultValue();
+        }
+
+        public function setPassword($password){
+            $this->hash = password_hash($password, PASSWORD_DEFAULT);
+        }
+
+        public static function login($username, $password){
+            $resultSet = parent::filter_by([
+                'username' => $username
+            ]);
+
+            if(count($resultSet) == 0)
+                return null;
+
+            $record = $resultSet[0];
+
+            if(password_verify($password, $record['hash'])){
+                return parent::toObject($record);
+            }
+
         }
 
     }
