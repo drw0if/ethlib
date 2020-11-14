@@ -1,10 +1,10 @@
 <?php
-    require_once "Utils.php";
+    require_once __DIR__ . "/Utils.php";
 
     /* 404 if directly requested */
     exitIfRequested(__FILE__);
 
-    require_once "DB.php";
+    require_once __DIR__ . "/DB.php";
 
     /* Empty class to represent default value data type */
     class DefaultValue{}

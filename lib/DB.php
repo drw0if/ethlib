@@ -1,6 +1,6 @@
 <?php
 
-    require_once "Utils.php";
+    require_once __DIR__ . "/Utils.php";
 
     /* Avoid direct page request */
     exitIfRequested(__FILE__);

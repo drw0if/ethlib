@@ -1,6 +1,6 @@
 <?php
 
-    require_once "ORM.php";
+    require_once __DIR__ . "/ORM.php";
 
     class User extends Entity{
         public $user_id;
