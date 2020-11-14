@@ -1,3 +1,7 @@
+<?php
+    require_once __DIR__ . "/../lib/Utils.php";
+    exitIfRequested(__FILE__);
+?>
 <!DOCTYPE html>
 <html lang="it">
 <head>
