@@ -1,6 +1,6 @@
 <?php
 
-    function registerPost(){
+    function signupPost(){
         if(!isset($_POST["email"]) || !isset($_POST["password"]) || !isset($_POST["username"])){
             return "Ci sono dei valori mancanti!";
         }
@@ -39,8 +39,14 @@
         }
     }
 
+    session_start();
+    if(isset($_SESSION["login_token"])){
+        header("Location: index.php");
+        die();
+    }
+
     if($_SERVER["REQUEST_METHOD"] === 'POST'){
-        $error = registerPost();
+        $error = signupPost();
         if($error === null)
             header("Location: index.php");
     }
@@ -49,12 +55,31 @@
 
 <?php require_once "template/header.php"; ?>
 
-<form action="" method="POST">
-    <input type="email" name="email">
-    <input type="text" name="username">
-    <input type="text" name="password">
-    <input type="submit" name="submit">
-</form>
+    <div class="splitted-container">
+        <div class="form-container">
+            <h2 class="center">
+                Sign up
+            </h2>
+            <form action="" method="POST">
+                <input class="form-input" type="text" name="username" placeholder="Username">
+                <input class="form-input" type="email" name="email" placeholder="Email">
+                <input class="form-input" type="password" name="password" placeholder="Password">
+                <input class="form-input" type="password" name="passwordConfirm" placeholder="Conferma password">
+                <input class="form-input form-button" type="submit" name="submit" value="SIGN UP">
+            </form>
+        </div>
+        <div class="redirect-container">
+            <h2 class="center">
+                Bentornato!
+            </h2>
+            <p class="center">
+                Fai già parte della nostra community?
+            </p>
+            <a href="signin.php">
+                <input class="form-input form-button" type="button" value="SIGN IN">
+            </a>
+        </div>
+    </div>
 
 
 <?php require_once "template/footer.php"; ?>
