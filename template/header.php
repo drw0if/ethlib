@@ -14,10 +14,10 @@
 </head>
 <body>
     <header class="page-header">
-        <section class="logo">
+        <div class="logo">
             ETHIB
-        </section>
-        <form method="GET" action="" class="search-box">
+        </div>
+        <form method="GET" action="search.php" class="search-box">
             <input type="text" class="search-input" placeholder="George Orwell" name="query">
             <input type="submit" class="search-button" value="&#128269;">
         </form>

@@ -60,7 +60,7 @@
             <h2 class="center">
                 Sign up
             </h2>
-            <form action="" method="POST">
+            <form id="form" method="POST">
                 <input class="form-input" type="text" name="username" placeholder="Username">
                 <input class="form-input" type="email" name="email" placeholder="Email">
                 <input class="form-input" type="password" name="password" placeholder="Password">
@@ -75,11 +75,17 @@
             <p class="center">
                 Fai già parte della nostra community?
             </p>
-            <a href="signin.php">
-                <input class="form-input form-button" type="button" value="SIGN IN">
+            <a href="signin.php" class="form-input form-button">
+                SIGN IN
             </a>
         </div>
     </div>
 
+    <script>
+        const submitButton = document.getElementById("submitButton");
+        submitButton.onclick = function(){
+
+        }
+    </script>
 
 <?php require_once "template/footer.php"; ?>
