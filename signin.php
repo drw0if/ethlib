@@ -10,6 +10,7 @@
             <form method="POST">
                 <input class="form-input" type="text" name="username" placeholder="Username">
                 <input class="form-input" type="password" name="password" placeholder="Password">
+                <div class="error-banner center"></div>
                 <input class="form-input form-button" type="submit" name="submit" value="SIGN IN">
             </form>
         </div>
@@ -29,7 +30,5 @@
 
         </div>
     </div>
-
-
 
 <?php require_once "template/footer.php"; ?>

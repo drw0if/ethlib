@@ -162,3 +162,8 @@ html, body{
 .redirect-container a{
     text-decoration: none;
 }
+
+.error-banner{
+    margin: 10px auto;
+    color: red;
+}

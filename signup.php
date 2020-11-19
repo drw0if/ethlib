@@ -18,7 +18,7 @@
         $password = trim($_POST["password"]);
         if(strlen($password) < 8 || !preg_match("/[a-z]/", $password) ||
             !preg_match("/[A-Z]/", $password) || !preg_match("/\d/", $password) ||
-            !preg_match("/[\W_]/", $password)){
+            !preg_match("/\W|_/", $password)){
 
             return "La password non rispetta i criteri minimi di sicurezza!";
         }
@@ -61,11 +61,12 @@
                 Sign up
             </h2>
             <form id="form" method="POST">
-                <input class="form-input" type="text" name="username" placeholder="Username">
-                <input class="form-input" type="email" name="email" placeholder="Email">
-                <input class="form-input" type="password" name="password" placeholder="Password">
-                <input class="form-input" type="password" name="passwordConfirm" placeholder="Conferma password">
-                <input class="form-input form-button" type="submit" name="submit" value="SIGN UP">
+                <input class="form-input" type="text" name="username" placeholder="Username" required>
+                <input class="form-input" type="email" name="email" placeholder="Email" required>
+                <input class="form-input" type="password" name="password" placeholder="Password" required>
+                <input class="form-input" type="password" name="passwordConfirm" placeholder="Conferma password" required>
+                <div class="error-banner center"></div>
+                <input id="submitButton" class="form-input form-button" type="submit" name="submit" value="SIGN UP">
             </form>
         </div>
         <div class="redirect-container">
@@ -83,8 +84,50 @@
 
     <script>
         const submitButton = document.getElementById("submitButton");
-        submitButton.onclick = function(){
+        const form = document.getElementById("form");
+        const errorBanner = document.getElementsByClassName("error-banner")[0];
 
+        const showError = function(msg) {
+            errorBanner.innerText = msg;
+        }
+
+        submitButton.onclick = function(evt){
+            for(let i = 0; i < 4; i++){
+                let input = form.children[i];
+                let check = input.validity;
+                if(check.valueMissing){
+                    showError(input.placeholder + " mancante");
+                    return false;
+                }
+                if(check.typeMismatch){
+                    showError(input.placeholder + " non valida");
+                    return false;
+                }
+            }
+
+            let password = form.children[2].value;
+
+            if(password.match(/[a-z]/) == null){
+                showError("Nella password serve almeno una lettera minuscola");
+                return false;
+            }
+            if(password.match(/[A-Z]/) == null){
+                showError("Nella password serve almeno una lettera maiuscola");
+                return false;
+            }
+            if(password.match(/[0-9]/) == null){
+                showError("Nella password serve almeno una cifra");
+                return false;
+            }
+            if(password.match(/\W|_/) == null){
+                showError("Nella password serve almeno un carattere speciale");
+                return false;
+            }
+
+            if(password != form.children[3].value){
+                showError("La conferma non coincide con la password");
+                return false;
+            }
         }
     </script>
 
