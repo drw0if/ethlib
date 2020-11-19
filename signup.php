@@ -1,18 +1,26 @@
 <?php
 
     function signupPost(){
+        $ans = [
+            "user_id" => null,
+            "error" => null,
+        ];
+
         if(!isset($_POST["email"]) || !isset($_POST["password"]) || !isset($_POST["username"])){
-            return "Ci sono dei valori mancanti!";
+            $ans["error"] = "Ci sono dei valori mancanti!";
+            return $ans;
         }
 
         $email = trim($_POST["email"]);
         if(strlen($email) === 0 || !filter_var($email, FILTER_VALIDATE_EMAIL)){
-            return "L'email inserita non è valida!";
+            $ans["error"] = "L'email inserita non è valida!";
+            return $ans;
         }
 
         $username = trim($_POST["username"]);
         if(strlen($username) === 0){
-            return "L'username inserito non è valido!";
+            $ans["error"] = "L'username inserito non è valido!";
+            return $ans;
         }
 
         $password = trim($_POST["password"]);
@@ -20,7 +28,8 @@
             !preg_match("/[A-Z]/", $password) || !preg_match("/\d/", $password) ||
             !preg_match("/\W|_/", $password)){
 
-            return "La password non rispetta i criteri minimi di sicurezza!";
+            $ans["error"] = "La password non rispetta i criteri minimi di sicurezza!";
+            return $ans;
         }
 
         require_once __DIR__ . "/lib/Models.php";
@@ -32,23 +41,34 @@
 
         try{
             $newUser->save();
-            return null;
+
+            $users = User::filter_by([
+                'username' => $newUser->username
+            ]);
+
+            $ans["user_id"] = $users[0]["user_id"];
+            return $ans;
         }
         catch(DuplicateKeyException $e){
-            return "Username o email già esistente!";
+            $ans["error"] = "Username o email già esistente!";
+            return $ans;
         }
     }
 
     session_start();
-    if(isset($_SESSION["login_token"])){
+    if(isset($_SESSION["user_id"])){
         header("Location: index.php");
         die();
     }
 
+    $ans = null;
+
     if($_SERVER["REQUEST_METHOD"] === 'POST'){
-        $error = signupPost();
-        if($error === null)
+        $ans = signupPost();
+        if($ans["error"] === null){
+            $_SESSION["user_id"] = $ans["user_id"];
             header("Location: index.php");
+        }
     }
 
 ?>
@@ -65,7 +85,9 @@
                 <input class="form-input" type="email" name="email" placeholder="Email" required>
                 <input class="form-input" type="password" name="password" placeholder="Password" required>
                 <input class="form-input" type="password" name="passwordConfirm" placeholder="Conferma password" required>
-                <div class="error-banner center"></div>
+                <div class="error-banner center">
+                    <?php if($ans != null) echo $ans["error"]; ?>
+                </div>
                 <input id="submitButton" class="form-input form-button" type="submit" name="submit" value="SIGN UP">
             </form>
         </div>
