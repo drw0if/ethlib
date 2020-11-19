@@ -23,9 +23,19 @@
         </form>
         <nav class="navbar">
             <ul>
-                <li class="nav__item"><a href="">Home</a></li>
-                <li class="nav__item"><a href=""></a></li>
-                <li class="nav__item"><a href="">Admin</a></li>
+                <?php if(isLogged()){ ?>
+                    <li class="nav__item"><a href="index.php">Home</a></li>
+                    <li class="nav__item"><a href="upload.php">Upload</a></li>
+                    <li class="nav__item"><a href="profile.php">Profilo</a></li>
+
+                    <?php if(isAdmin()){?>
+                        <li class="nav__item"><a href="admin.php">Admin</a></li>
+                    <?php }?>
+
+                <?php } else { ?>
+                    <li class="nav__item"><a href="signin.php">Sign in</a></li>
+                    <li class="nav__item"><a href="signup.php">Sign up</a></li>
+                <?php } ?>
             </ul>
         </nav>
     </header>

@@ -17,6 +17,11 @@
         return isset($_SESSION["user_id"]) && ($_SESSION["user_id"] !== null);
     }
 
+    /* TODO: implement real check */
+    function isAdmin(){
+        return false;
+    }
+
     function isPost(){
         return strcmp($_SERVER["REQUEST_METHOD"], 'POST') === 0;
     }
