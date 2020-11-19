@@ -106,6 +106,8 @@ CREATE TABLE `Genre_Book`(
     FOREIGN KEY (`book_id`) REFERENCES `Book`(`book_id`)
 )ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+-- username: admin
+-- password: admin
 INSERT INTO `User`
     VALUES (DEFAULT, 'admin', 'admin@ethib.com', '$2y$10$HWqQBNpNtYo1SRUfBdAprOlvDZHDIvaLpe4QxU4APAJWixcSCL/CW', 1);
 

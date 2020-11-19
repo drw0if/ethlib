@@ -13,5 +13,16 @@
         die('Database Error, please contact the administrator');
     }
 
+    function isLogged(){
+        return isset($_SESSION["user_id"]) && ($_SESSION["user_id"] !== null);
+    }
+
+    function isPost(){
+        return strcmp($_SERVER["REQUEST_METHOD"], 'POST') === 0;
+    }
+
+    function escapeString($string){
+        return htmlspecialchars($string, ENT_QUOTES, 'UTF-8');
+    }
 
 ?>

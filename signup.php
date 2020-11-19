@@ -1,5 +1,8 @@
 <?php
 
+    session_start();
+    require_once __DIR__ . "/lib/Utils.php";
+
     function signupPost(){
         $ans = [
             "user_id" => null,
@@ -55,15 +58,14 @@
         }
     }
 
-    session_start();
-    if(isset($_SESSION["user_id"])){
+    if(isLogged()){
         header("Location: index.php");
         die();
     }
 
     $ans = null;
 
-    if($_SERVER["REQUEST_METHOD"] === 'POST'){
+    if(isPost()){
         $ans = signupPost();
         if($ans["error"] === null){
             $_SESSION["user_id"] = $ans["user_id"];
