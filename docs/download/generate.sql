@@ -26,6 +26,7 @@ CREATE TABLE `Book`(
     `name` VARCHAR(100) NOT NULL,
     `mark_sum` FLOAT NOT NULL DEFAULT 0,
     `mark_count` INT NOT NULL DEFAULT 0,
+    `private` BOOLEAN NOT NULL DEFAULT 0,
 
     `user_id` INT NOT NULL,
 

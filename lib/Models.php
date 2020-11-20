@@ -44,11 +44,13 @@
         public $name;
         public $mark_sum;
         public $mark_count;
+        public $private;
         public $user_id;
 
         public function __construct(){
             $this->mark_sum = new DefaultValue();
             $this->mask_count = new DefaultValue();
+            $this->private = new DefaultValue();
         }
 
     }
