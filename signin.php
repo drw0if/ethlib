@@ -76,7 +76,7 @@
                 </h2>
             </header>
             <p class="center">
-                Vuoi entrare anche tu a far parte della nostra community?
+                Entra anche tu a far parte della nostra community?
             </p>
 
             <a href="signup.php" class="form-input form-button">

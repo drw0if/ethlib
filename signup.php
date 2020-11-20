@@ -79,9 +79,11 @@
 
     <div class="splitted-container">
         <div class="form-container">
-            <h2 class="center">
-                Sign up
-            </h2>
+            <header>
+                <h2 class="center">
+                    Sign up
+                </h2>
+            </header>
             <form id="form" method="POST">
                 <input class="form-input" type="text" name="username" placeholder="Username" required>
                 <input class="form-input" type="email" name="email" placeholder="Email" required>
