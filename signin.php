@@ -51,7 +51,7 @@
     }
 ?>
 
-<?php require_once "template/header.php"; ?>
+<?php require_once __DIR__ . "/template/header.php"; ?>
 
     <div class="splitted-container">
         <div class="form-container">
@@ -86,4 +86,4 @@
         </div>
     </div>
 
-<?php require_once "template/footer.php"; ?>
+<?php require_once __DIR__ . "/template/footer.php"; ?>

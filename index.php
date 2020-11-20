@@ -1,3 +1,8 @@
+<?php
+    session_start();
+
+?>
+
 <?php require_once "template/header.php"; ?>
 
 
