@@ -78,7 +78,7 @@
 <?php require_once __DIR__ . "/template/header.php"; ?>
 
     <div class="splitted-container">
-        <div class="form-container">
+        <div class="form-container form-background">
             <header>
                 <h2 class="center">
                     Sign up
@@ -95,7 +95,7 @@
                 <input id="submitButton" class="form-input form-button" type="submit" name="submit" value="SIGN UP">
             </form>
         </div>
-        <div class="redirect-container">
+        <div class="redirect-container centered-container">
             <h2 class="center">
                 Bentornato!
             </h2>
