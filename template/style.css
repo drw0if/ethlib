@@ -117,10 +117,10 @@ label .form-input{
     display: flex;
     align-items: center;
     justify-content: center;
-}
-
-#file-label h2{
     overflow: hidden;
+    font-size: 20px;
+    font-weight: bold;
+    word-break: break-all;
 }
 
 #file-input{
