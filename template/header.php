@@ -14,27 +14,27 @@
 </head>
 <body>
     <header class="page-header">
-        <div class="logo">
+        <div id="logo">
             ETHIB
         </div>
         <form method="GET" action="search.php" class="search-box">
             <input type="text" class="search-input" placeholder="George Orwell" name="query">
             <input type="submit" class="search-button" value="&#128269;">
         </form>
-        <nav class="navbar">
+        <nav id="navbar">
             <ul>
                 <?php if(isLogged()){ ?>
-                    <li class="nav__item"><a href="index.php">Home</a></li>
-                    <li class="nav__item"><a href="upload.php">Upload</a></li>
-                    <li class="nav__item"><a href="profile.php">Profilo</a></li>
+                    <li class="nav-item"><a href="index.php">Home</a></li>
+                    <li class="nav-item"><a href="upload.php">Upload</a></li>
+                    <li class="nav-item"><a href="profile.php">Profilo</a></li>
 
                     <?php if(isAdmin()){?>
-                        <li class="nav__item"><a href="admin.php">Admin</a></li>
+                        <li class="nav-item"><a href="admin.php">Admin</a></li>
                     <?php }?>
 
                 <?php } else { ?>
-                    <li class="nav__item"><a href="signin.php">Sign in</a></li>
-                    <li class="nav__item"><a href="signup.php">Sign up</a></li>
+                    <li class="nav-item"><a href="signin.php">Sign in</a></li>
+                    <li class="nav-item"><a href="signup.php">Sign up</a></li>
                 <?php } ?>
             </ul>
         </nav>

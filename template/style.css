@@ -1,5 +1,6 @@
 /* https://flatuicolors.com/palette/ca */
 
+/*                      Normalizer                      */
 html, body{
     margin: 0px;
     padding: 0px;
@@ -9,82 +10,42 @@ html, body{
     font-family: sans-serif;
 }
 
-.center{
-    text-align: center;
-}
 
-.page-header{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    background-color: #222f3e;
-    color: #c8d6e5;
-}
+/*                      Attributes                      */
+.center{ text-align: center; }
+.form-background{ background-color: #eee; }
+.d-block{ display: block; }
+.padded-container{ padding: 20px; }
 
-.logo{
-    display: flex;
-    padding: 10px;
-    align-items: center;
-    font-size: 35px;
-    font-family: monospace;
-}
 
-.search-box {
-    background: #576574;
-    height: 20px;
-    border-radius: 40px;
-    padding: 10px;
-}
+/*                      Building blocks                      */
+.row{ width: 100%; display: flex; flex-direction: row; justify-content: center; }
+.error-banner{ margin: 10px auto; color: red; }
 
-.search-box:hover > .search-input {
-    width: 240px;
-    padding: 0 6px;
-}
 
-.search-button {
-    border: none;
-    background: none;
-    outline: none;
-    float: right;
-    cursor: pointer;
-    border-radius: 50%;
-    transition: 0.4s;
-    padding: 0px 2px;
-}
+/*                      Sections                      */
 
-.search-input {
-    border: none;
-    background: none;
-    outline: none;
-    float: left;
-    color: white;
-    font-size: 16px;
-    transition: 0.4s;
-    line-height: 20px;
-    width: 0px;
-}
+/* Start header */
+.page-header{ display: flex; flex-direction: row; justify-content: space-between; align-items: center; background-color: #222f3e; color: #c8d6e5; }
+/* End header*/
 
-.navbar{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-}
+/* Start logo */
+#logo{ padding: 10px; font-size: 35px; font-family: monospace; }
+/* End logo*/
 
-.navbar ul{
-    list-style: none;
-    margin: 0px;
-}
+/* Start Search Box */
+.search-box { background: #576574; height: 20px; border-radius: 40px; padding: 10px; }
+.search-box:hover > .search-input { width: 240px; padding: 0 6px; }
+.search-button { border: none; background: none; outline: none; float: right; cursor: pointer; border-radius: 50%; transition: 0.4s; padding: 0px 2px; }
+.search-input { border: none; background: none; outline: none; float: left; color: white; font-size: 16px; transition: 0.4s; line-height: 20px; width: 0px; }
+/* End Search Box */
 
-.nav__item{
-    display: inline;
-}
-
-.nav__item a{
-    color: #c8d6e5;
-    text-decoration: none;
-    padding-right: 10px;
-}
+/* Start Navbar*/
+#navbar{ display: flex; flex-direction: row; align-items: center; }
+#navbar ul{ list-style: none; margin: 0px; }
+.nav-item{ display: inline; }
+.nav-item a{ color: #c8d6e5; text-decoration: none; padding-right: 10px; }
+/* End Navbar*/
 
 .page-content{
     flex-grow: 2;
@@ -96,24 +57,11 @@ html, body{
     padding-bottom: 20px;
 }
 
-.page-footer{
-    background-color: #222f3e;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.page-footer img{
-    display: block;
-    padding: 20px 0px;
-}
-
-.footer-content{
-    text-align: center;
-    color: #c8d6e5;
-    font-family: monospace;
-    margin-right: 5px;
-}
+/* Start footer */
+#page-footer{ background-color: #222f3e; display: flex; align-items: center; justify-content: center; }
+#page-footer img{ display: block; padding: 20px 0px; }
+#page-footer p{ text-align: center; color: #c8d6e5; font-family: monospace; margin-right: 5px; }
+/* End footer */
 
 .splitted-container{
     margin: auto;
@@ -128,28 +76,12 @@ html, body{
     padding: 50px;
 }
 
-.form-input{
-    display: block;
-    margin: 20px auto;
-    border: none;
-    outline-color: black;
-    padding: 10px;
-}
+/* Start form controls */
+.form-input{ display: block; margin: 20px auto; border: none; outline-color: black; padding: 10px; }
+.form-button{ border-radius: 10px; outline: none; font-size: 1em; padding: 7px; background-color:#ee5253; color: white; }
+/* End form controls*/
 
-.form-button{
-    border-radius: 10px;
-    outline: none;
-    font-size: 1em;
-    padding: 7px;
-    background-color:#ee5253;
-    color: white;
-}
-
-.form-background{
-    background-color: #eee;
-}
-
-.form-container{
+.left-container{
     border-top-left-radius: 10px;
     border-bottom-left-radius: 10px;
 }
@@ -160,31 +92,19 @@ html, body{
     justify-content: center;
 }
 
-.redirect-container{
+.right-container{
     background-color: #576574;
     border-top-right-radius: 10px;
     border-bottom-right-radius: 10px;
     color: #fff;
 }
 
-.redirect-container a{
+.right-container a{
     text-decoration: none;
-}
-
-.error-banner{
-    margin: 10px auto;
-    color: red;
 }
 
 label .form-input{
     display: inline;
-}
-
-.row{
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
 }
 
 #file-label{
@@ -204,11 +124,10 @@ label .form-input{
 }
 
 #file-input{
-    width: 0.1px;
-    height: 0.1px;
-    visibility: hidden;
+    display: none;
 }
 
+/* Start progress bar */
 #progress-bar{
     width: 100%;
     margin: 20px;
@@ -226,11 +145,4 @@ label .form-input{
     left: 50%;
     z-index: 1;
 }
-
-.d-block{
-    display: block;
-}
-
-.padded-container{
-    padding: 20px;
-}
+/* End progress bar */

@@ -4,8 +4,8 @@
 ?>
     </main>
 
-<footer class="page-footer">
-    <p class="footer-content">
+<footer id="page-footer">
+    <p>
         Fork me on
     </p>
     <a href="https://github.com/drw0if/ethib">
