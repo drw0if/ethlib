@@ -37,7 +37,6 @@
 
     class Book extends Entity{
         public $book_id;
-        public $hash;
         public $isbn;
         public $local_name;
         public $file_type;
@@ -48,8 +47,9 @@
         public $user_id;
 
         public function __construct(){
+            $this->isbn = new DefaultValue();
             $this->mark_sum = new DefaultValue();
-            $this->mask_count = new DefaultValue();
+            $this->mark_count = new DefaultValue();
             $this->private = new DefaultValue();
         }
 

@@ -19,7 +19,6 @@ CREATE TABLE `User`(
 -- -------
 CREATE TABLE `Book`(
     `book_id` INT NOT NULL AUTO_INCREMENT,
-    `hash` CHAR(64) NOT NULL,
     `isbn` VARCHAR(13) DEFAULT NULL,
     `local_name` VARCHAR(64) NOT NULL,
     `file_type` VARCHAR(5) NOT NULL,
