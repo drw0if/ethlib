@@ -10,7 +10,7 @@
 <?php require_once __DIR__ . "/template/header.php"; ?>
 
     <div class="row">
-        <label for="file" id="file-label">
+        <label for="file-input" id="file-label">
             <h2>1984</h2>
         </label>
 
@@ -22,6 +22,10 @@
                 Private
             </label>
 
+            <label for="name" class="d-block">
+                Name
+                <input type="text" name="name" class="form-input" placeholder="1984">
+            </label>
             <label for="isbn" class="d-block">
                 ISBN
                 <input type="text" name="isbn" class="form-input" placeholder="isbn">
