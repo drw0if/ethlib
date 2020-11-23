@@ -1,5 +1,13 @@
 <?php
 
+    define("MAX_FILE_SIZE", 50*1024*1024); // 50MB
+    $allowedMimeTypes = [
+        'application/pdf' => '.pdf',           //pdf
+        'application/epub+zip' => '.epub'      //epub
+    ];
+    define('STORAGE', __DIR__ . '\..\upload\\');
+
+
     function exitIfRequested($callingFile){
         if (strcasecmp(str_replace('\\', '/', $callingFile), $_SERVER['SCRIPT_FILENAME']) == 0) {
             http_response_code(404);
