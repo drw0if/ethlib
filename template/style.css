@@ -16,7 +16,8 @@ html, body{
 .form-background{ background-color: #eee; }
 .d-block{ display: block; }
 .padded-container{ padding: 20px; }
-
+.background-red{ background-color:#ee5253; }
+.text-white{ color: white; }
 
 /*                      Building blocks                      */
 .row{ width: 100%; display: flex; flex-direction: row; justify-content: center; }
@@ -78,7 +79,7 @@ html, body{
 
 /* Start form controls */
 .form-input{ display: block; margin: 20px auto; border: none; outline-color: black; padding: 10px; }
-.form-button{ border-radius: 10px; outline: none; font-size: 1em; padding: 7px; background-color:#ee5253; color: white; }
+.form-button{ border-radius: 10px; outline: none; font-size: 1em; padding: 7px; color: white; }
 /* End form controls*/
 
 .left-container{
@@ -146,3 +147,74 @@ label .form-input{
     z-index: 1;
 }
 /* End progress bar */
+
+
+/* Start Modal */
+.modal{
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+}
+
+.modal-dialog {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+}
+
+.modal-content{
+    border: 1px solid black;
+    border-radius: 10px;
+    margin: auto;
+    background-color: white;
+}
+
+.modal header{
+    padding: 5px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.modal header p{
+    margin: auto 0px;
+    font-weight: bold;
+    font-size: 1.25em;
+}
+
+.modal main{
+    border-bottom: 1px solid grey;
+    border-top: 1px solid grey;
+
+}
+
+.modal footer{
+    padding: 5px;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+}
+
+.modal-close{
+    display: block;
+    margin: 0;
+    border: none;
+    border-radius: 10px;
+    font-size: 1em;
+    padding: 10px;
+    background-color: white;
+    cursor: pointer;
+}
+
+.modal-button{
+    display: block;
+    border: none;
+    border-radius: 10px;
+    padding: 10px;
+    margin: 5px;
+}
+/* End Modal */

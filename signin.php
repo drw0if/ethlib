@@ -66,7 +66,7 @@
                 <div class="error-banner center">
                     <?php if($ans != null) echo $ans["error"]; ?>
                 </div>
-                <input class="form-input form-button" type="submit" name="submit" value="SIGN IN">
+                <input class="form-input form-button background-red" type="submit" name="submit" value="SIGN IN">
             </form>
         </div>
         <div class="right-container centered-container">
@@ -79,7 +79,7 @@
                 Entra anche tu a far parte della nostra community?
             </p>
 
-            <a href="signup.php" class="form-input form-button">
+            <a href="signup.php" class="form-input form-button background-red">
                 SIGN UP
             </a>
 

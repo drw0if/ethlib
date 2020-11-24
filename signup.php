@@ -92,7 +92,7 @@
                 <div class="error-banner center">
                     <?php if($ans != null) echo $ans["error"]; ?>
                 </div>
-                <input id="submitButton" class="form-input form-button" type="submit" name="submit" value="SIGN UP">
+                <input id="submitButton" class="form-input form-button background-red" type="submit" name="submit" value="SIGN UP">
             </form>
         </div>
         <div class="right-container centered-container">
@@ -102,7 +102,7 @@
             <p class="center">
                 Fai già parte della nostra community?
             </p>
-            <a href="signin.php" class="form-input form-button">
+            <a href="signin.php" class="form-input form-button background-red">
                 SIGN IN
             </a>
         </div>
