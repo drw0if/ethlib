@@ -56,14 +56,21 @@
     require_once __DIR__ . '/../../lib/Models.php';
 
     $b = new Book();
-    if(isset($_POST['isbn']) && preg_match("/^(\d{10}|\d{13})$/", trim($_POST['isbn']))){
-        $b->isbn = trim($_POST['isbn']);
+    if(isset($_POST['isbn'])){
+        $isbn = trim($_POST['isbn']);
+
+        if(!preg_match("/^(\d{10}|\d{13})$/", $isbn)){
+            http_response_code(400);
+            exit();
+        }
+
+        $b->isbn = $isbn;
     }
     $b->local_name = $localName;
     $b->file_type = $extension;
     $b->name = trim($_POST['name']);
 
-    if(isset($_POST['private']) && $_POST['private'] === 'on'){
+    if(isset($_POST['private']) && $_POST['private'] === 'true'){
         $b->private = true;
     }else{
         $b->private = false;

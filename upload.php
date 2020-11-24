@@ -31,7 +31,7 @@
             </label>
 
             <div class="error-banner center"></div>
-            <input type="button" id="submit" class="form-input form-button" value="UPLOAD">
+            <input type="button" id="submit" class="form-input form-button background-red" value="UPLOAD">
         </div>
     </div>
 
@@ -39,6 +39,29 @@
         <div id="progress-bar">
             <p id="progress-bar-label"></p>
             <div class="center"></div>
+        </div>
+    </div>
+
+    <div class="modal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <header>
+                    <p>Esito caricamento</p>
+                    <button class="modal-close">
+                        X
+                    </button>
+                </header>
+                <main>
+                    <p>
+                        Caricamento completato con successo!
+                    </p>
+                </main>
+                <footer>
+                    <button class="modal-button background-red text-white">
+                        OK
+                    </button>
+                </footer>
+            </div>
         </div>
     </div>
 
@@ -73,6 +96,10 @@
             bar(0);
         }
 
+        const showEndDialog = function(){
+
+        }
+
         fileInput.onchange = function(e){
             reset();
             innerBar.style.backgroundColor = 'green';
@@ -94,7 +121,7 @@
                 return;
             }
 
-            var private = privateCheck.value;
+            var private = privateCheck.checked;
             var isbn = isbnInput.value;
 
             var data = new FormData();
@@ -120,8 +147,6 @@
                     post.onerror();
                     return;
                 }
-
-                post.onerror();return;
 
                 bar(100);
                 innerBar.style.background = "#2ecc71";
