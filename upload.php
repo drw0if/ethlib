@@ -51,11 +51,11 @@
                         X
                     </button>
                 </header>
-                <main>
+                <div class="modal-main">
                     <p class="modal-text">
                         Caricamento completato con successo!
                     </p>
-                </main>
+                </div>
                 <footer>
                     <button class="modal-button background-red text-white">
                         OK

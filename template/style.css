@@ -177,10 +177,9 @@ label .form-input{
     font-size: 1.25em;
 }
 
-.modal main{
+.modal-main{
     border-bottom: 1px solid grey;
     border-top: 1px solid grey;
-
 }
 
 .modal footer{
