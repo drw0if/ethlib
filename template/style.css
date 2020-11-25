@@ -10,20 +10,9 @@ html, body{
     font-family: sans-serif;
 }
 
-
-/*                      Attributes                      */
-.center{ text-align: center; }
-.form-background{ background-color: #eee; }
-.d-block{ display: block; }
-.padded-container{ padding: 20px; }
-.background-red{ background-color:#ee5253; }
-.text-white{ color: white; }
-.show{ display: block; }
-
 /*                      Building blocks                      */
 .row{ width: 100%; display: flex; flex-direction: row; justify-content: center; }
 .error-banner{ margin: 10px auto; color: red; }
-
 
 /*                      Sections                      */
 
@@ -224,3 +213,12 @@ label .form-input{
     padding: 10px;
 }
 /* End Modal */
+
+/*                      Attributes                      */
+.center{ text-align: center; }
+.form-background{ background-color: #eee; }
+.d-block{ display: block; }
+.padded-container{ padding: 20px; }
+.background-red{ background-color:#ee5253; }
+.text-white{ color: white; }
+.show{ display: block; }
