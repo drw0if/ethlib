@@ -52,7 +52,7 @@
                     </button>
                 </header>
                 <main>
-                    <p>
+                    <p class="modal-text">
                         Caricamento completato con successo!
                     </p>
                 </main>
@@ -71,6 +71,8 @@
         const fileLabel = document.getElementById('file-label');
         const innerBar = document.getElementById('progress-bar').children[1];
         const barLabel = document.getElementById('progress-bar-label');
+        const modal = document.getElementsByClassName('modal')[0];
+        const modalText = document.getElementsByClassName('modal-text')[0];
 
         // Form controls
         const fileInput = document.getElementById('file-input')
@@ -92,13 +94,18 @@
 
         const reset = function(){
             fileLabel.innerText = 'Clicca per scegliere il contenuto';
+            nameInput.value = '';
+            privateCheck.checked = false;
             showError('');
             bar(0);
         }
 
-        const showEndDialog = function(){
-
-        }
+        document.getElementsByClassName('modal-close')[0].onclick = 
+            document.getElementsByClassName('modal-button')[0].onclick = function(){
+                fileInput.value = '';
+                modal.classList.toggle('show');
+                reset();
+            }
 
         fileInput.onchange = function(e){
             reset();
@@ -150,7 +157,8 @@
 
                 bar(100);
                 innerBar.style.background = "#2ecc71";
-                alert('Caricamento completato!');
+                modalText.innerText = 'Caricamento completato!';
+                modal.classList.add('show');
             };
 
             post.open("POST", "api/v1/upload.php");
