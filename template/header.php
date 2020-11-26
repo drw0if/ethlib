@@ -32,6 +32,8 @@
                         <li class="nav-item"><a href="admin.php">Admin</a></li>
                     <?php }?>
 
+                    <li class="nav-item"><a href="logout.php">Logout</a></li>
+
                 <?php } else { ?>
                     <li class="nav-item"><a href="signin.php">Sign in</a></li>
                     <li class="nav-item"><a href="signup.php">Sign up</a></li>
