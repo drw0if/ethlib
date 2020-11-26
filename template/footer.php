@@ -4,7 +4,7 @@
 ?>
     </main>
 
-<footer id="page-footer">
+<footer class="page-footer">
     <p>
         Fork me on
     </p>

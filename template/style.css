@@ -4,14 +4,14 @@
 html, body{
     margin: 0px;
     padding: 0px;
-    height: 100%;
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
     font-family: sans-serif;
 }
 
 /*                      Building blocks                      */
-.row{ width: 100%; display: flex; flex-direction: row; justify-content: center; }
+.row{ width: 100%; display: flex; flex-direction: row; justify-content: space-evenly; }
 .error-banner{ margin: 10px auto; color: red; }
 
 /*                      Sections                      */
@@ -49,9 +49,9 @@ html, body{
 }
 
 /* Start footer */
-#page-footer{ background-color: #222f3e; display: flex; align-items: center; justify-content: center; }
-#page-footer img{ display: block; padding: 20px 0px; }
-#page-footer p{ text-align: center; color: #c8d6e5; font-family: monospace; margin-right: 5px; }
+.page-footer{ background-color: #222f3e; display: flex; align-items: center; justify-content: center; }
+.page-footer img{ display: block; padding: 20px 0px; }
+.page-footer p{ text-align: center; color: #c8d6e5; font-family: monospace; margin-right: 5px; }
 /* End footer */
 
 .splitted-container{
@@ -212,6 +212,39 @@ label .form-input{
     padding: 10px;
 }
 /* End Modal */
+
+.book-row{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 10px 0;
+    border: 1px solid grey;
+    border-radius: 10px;
+    padding: 10px;
+    transition: box-shadow;
+    transition-duration: 0.2s;
+}
+
+.book-row:hover{
+    box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+}
+
+.book-text{
+    align-self: center;
+    max-width: 33%;
+}
+
+.book-button{
+    align-self: center;
+    border-radius: 10px;
+}
+
+.book-button a{
+    color: white;
+    display: block;
+    padding: 15px;
+    text-decoration: none;
+}
 
 /*                      Attributes                      */
 .center{ text-align: center; }
