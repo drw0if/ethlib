@@ -109,6 +109,6 @@ CREATE TABLE `Genre_Book`(
 -- username: admin
 -- password: admin
 INSERT INTO `User`
-    VALUES (DEFAULT, 'admin', 'admin@ethib.com', '$2y$10$HWqQBNpNtYo1SRUfBdAprOlvDZHDIvaLpe4QxU4APAJWixcSCL/CW', 1);
+    VALUES (DEFAULT, 'admin', 'admin@ethlib.com', '$2y$10$HWqQBNpNtYo1SRUfBdAprOlvDZHDIvaLpe4QxU4APAJWixcSCL/CW', 1);
 
 
