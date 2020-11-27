@@ -1,5 +1,5 @@
-CREATE DATABASE ethib;
-USE ethib;
+CREATE DATABASE ethlib;
+USE ethlib;
 
 -- -------
 -- User --

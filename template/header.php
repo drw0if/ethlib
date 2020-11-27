@@ -15,7 +15,7 @@
 <body>
     <header class="page-header">
         <div id="logo">
-            ETHIB
+            ETHLIB
         </div>
         <form method="GET" action="search.php" class="search-box">
             <input type="text" class="search-input" placeholder="George Orwell" name="query">

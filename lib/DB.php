@@ -13,7 +13,7 @@
         private $connection = null;
 
         private $hostname = "localhost";
-        private $dbname = "ethib";
+        private $dbname = "ethlib";
         private $username = "root";
         private $password = "";
 
