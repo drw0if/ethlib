@@ -10,7 +10,7 @@
 
     <link rel="stylesheet" href="template/style.css">
 
-    <title>Ethib</title>
+    <title>EthLib</title>
 </head>
 <body>
     <header class="page-header">
