@@ -46,14 +46,14 @@
                 <?php echo $book->name; ?>
             </div>
         </div>
-        <div class="col">
-            <div class="row">
-                <div class="col">Nome:</div>
-                <div class="col"><?php echo $book->name; ?></div>
+        <div class="col flex-center">
+            <div class="row space-between">
+                <div class="col p-10 description-name">Nome:</div>
+                <div class="col p-10 description-value"><?php echo $book->name; ?></div>
             </div>
-            <div class="row">
-                <div class="col">Condiviso da:</div>
-                <div class="col"><?php echo $owner->username; ?></div>
+            <div class="row space-between">
+                <div class="col p-10 description-name">Condiviso da:</div>
+                <div class="col p-10 description-value"><?php echo $owner->username; ?></div>
             </div>
         </div>
     </div>
