@@ -10,7 +10,7 @@
 <?php require_once __DIR__ . "/template/header.php"; ?>
 
     <div class="row">
-        <label for="file-input" id="file-label">
+        <label for="file-input" id="file-label" class="book-title-box">
         </label>
 
         <input type="file" name="file" id="file-input" accept="application/pdf,application/epub+zip">

@@ -13,7 +13,12 @@ html, body{
 /*                      Building blocks                      */
 .row{ width: 100%; display: flex; flex-direction: row; justify-content: space-evenly; }
 .error-banner{ margin: 10px auto; color: red; }
-
+.col{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
 /*                      Sections                      */
 
 /* Start header */
@@ -98,7 +103,7 @@ label .form-input{
     display: inline;
 }
 
-#file-label{
+.book-title-box{
     margin: 50px;
     cursor: pointer;
     width: 200px;
