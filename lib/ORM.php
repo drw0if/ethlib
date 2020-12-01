@@ -157,7 +157,7 @@
             }
         }
 
-        protected static function toObject($record){
+        public static function toObject($record){
             $obj = new static();
 
             foreach(static::getPropertyList() as $k => $v){
