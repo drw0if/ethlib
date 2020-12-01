@@ -40,7 +40,7 @@
                     </p>
                 </div>
                 <div class="book-button background-red">
-                    <a href="">></a>
+                    <a href="<?php echo 'book.php?book_id=' . $v->book_id; ?>">></a>
                 </div>
             </div>
 <?php
