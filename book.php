@@ -36,6 +36,16 @@
             die();
         }
     }
+
+    $book->isbn = "8804668237";
+    $data = $book->openData();
+
+    $dataToPrint = [
+        'title' => 'Titolo originale',
+        'publishers' => 'Editore',
+        'isbn_13' => 'ISBN',
+    ];
+
 ?>
 
 <?php require_once __DIR__ . "/template/header.php" ?>
@@ -43,7 +53,11 @@
     <div class="row">
         <div class="col">
             <div class="book-title-box">
-                <?php echo $book->name; ?>
+                <?php
+                    if($dataToPrint != NULL)
+                        echo '<img src="http://covers.openlibrary.org/b/isbn/' . $book->isbn . '-M.jpg" alt="No image available">';
+                    else echo $book->name;
+                ?>
             </div>
         </div>
         <div class="col flex-center">
@@ -55,6 +69,23 @@
                 <div class="col p-10 description-name">Condiviso da:</div>
                 <div class="col p-10 description-value"><?php echo $owner->username; ?></div>
             </div>
+            <?php
+                if($data != NULL){
+                    foreach($dataToPrint as $k => $v){
+            ?>
+                        <div class="row space-between">
+                            <div class="col p-10 description-name"><?php echo $v . ':'; ?></div>
+                            <div class="col p-10 description-value">
+                                <?php
+                                    if(is_array($data->{$k}))   echo $data->{$k}[0];
+                                    else                        echo $data->{$k};
+                                ?>
+                            </div>
+                        </div>
+            <?php
+                    }
+                }
+            ?>
         </div>
     </div>
 
