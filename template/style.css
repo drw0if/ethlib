@@ -70,7 +70,7 @@ html, body{
 
 /* Start form controls */
 .form-input{ display: block; margin: 20px auto; border: none; outline-color: black; padding: 10px; }
-.form-button{ border-radius: 10px; outline: none; font-size: 1em; padding: 7px; color: white; }
+.form-button{ border-radius: 10px; outline: none; font-size: 1em; padding: 7px; color: white; cursor: pointer; }
 /* End form controls*/
 
 .left-container{
@@ -267,3 +267,4 @@ label .form-input{
 .space-between{ justify-content: space-between; }
 .p-10{ padding: 10px; }
 .flex-center{ justify-content: center; }
+.reset-cursor{ cursor: default; }

@@ -37,7 +37,6 @@
         }
     }
 
-    $book->isbn = "8804668237";
     $data = $book->openData();
 
     $dataToPrint = [
@@ -52,9 +51,9 @@
 
     <div class="row">
         <div class="col">
-            <div class="book-title-box">
+            <div class="book-title-box reset-cursor">
                 <?php
-                    if($dataToPrint != NULL)
+                    if($data != NULL)
                         echo '<img src="http://covers.openlibrary.org/b/isbn/' . $book->isbn . '-M.jpg" alt="No image available">';
                     else echo $book->name;
                 ?>
@@ -86,6 +85,10 @@
                     }
                 }
             ?>
+        </div>
+        <div>
+        </div>
+        <div>
         </div>
     </div>
 
