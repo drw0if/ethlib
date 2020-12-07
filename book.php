@@ -91,10 +91,32 @@
                 }
             ?>
         </div>
+    </div>
+    <div class="row">
         <div>
+        <?php
+            $activeStars = round(intval($book->mark_sum)/max(intval($book->mark_count), 1));
+
+            for($i = 0; $i < $activeStars; $i++){
+        ?>
+            <div class="star active"></div>
+        <?php
+            }
+            for(; $i < 5; $i++){
+        ?>
+            <div class="star"></div>
+        <?php
+            }
+        ?>
         </div>
-        <div>
+
+        <div class="download book-button background-red">
+            <a href="download?id=1">
+                DOWNLOAD
+            </a>
         </div>
+    </div>
+    <div>
     </div>
 
 <?php require_once __DIR__ . "/template/footer.php" ?>

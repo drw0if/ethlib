@@ -256,9 +256,24 @@ label .form-input{
     font-weight: bold;
     font-size: 21px;
 }
+
 .description-value{
     font-size: 21px;
     font-style: italic;
+}
+
+.star{
+    display: inline;
+    font-size: 30px;
+    color:#ccc;
+}
+
+.star:before{
+    content: '★ ';
+}
+
+.active{
+    color: rgb(231, 231, 38);
 }
 
 /*                      Attributes                      */
