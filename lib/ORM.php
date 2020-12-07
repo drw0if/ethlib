@@ -124,7 +124,7 @@
             }
         }
 
-        public static function filter_by($where = []){
+        public static function filter_by($opts = []){
             $tableName = static::getTableName();
 
             //Build general query
@@ -135,18 +135,28 @@
 
             //Collect query parts
             foreach(static::getPropertyList() as $k => $v){
-                if(array_key_exists($k, $where)){
+                if(array_key_exists($k, $opts)){
                     $whereClause[] = "{$k} = ?";
-                    $params[] = $where[$k];
+                    $params[] = $opts[$k];
                 }
             }
 
             //complete query
             if(count($whereClause) > 0){
                 $whereClause = implode(' AND ', $whereClause);
-                $query .= " WHERE {$whereClause};";
+                $query .= " WHERE {$whereClause}";
             }
-            else $query .= ";";
+
+            //Both limit and offset are specified
+            if(isset($opts['limit']) && isset($opts['offset'])){
+                $query .= ' LIMIT ?, ?';
+                $params[] = $opts['offset'];
+                $params[] = $opts['limit'];
+            }//Just limit is specified
+            else if(isset($opts['limit'])){
+                $query .= ' LIMIT ?';
+                $params[] = $opts['limit'];
+            }
 
             try{
                 $db = DB::getInstance();

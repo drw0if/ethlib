@@ -37,6 +37,7 @@
                 $this->connection = new PDO("mysql:host={$this->hostname};dbname={$this->dbname}", $this->username, $this->password);
                 //Set error mode to exception
                 $this->connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+                $this->connection->setAttribute(PDO::ATTR_EMULATE_PREPARES, false );
             }
             catch(PDOException $e){
                 //If db connection error occurs return 500 status code (Server error)
