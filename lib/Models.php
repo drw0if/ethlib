@@ -98,6 +98,8 @@
         public $review_id;
         public $title;
         public $content;
+        public $user_id;
+        public $book_id;
     }
 
     class Author extends Entity{

@@ -34,8 +34,7 @@
     //Check Content-Type header
     if(!isset($allowedMimeTypes[$_FILES['file']['type']])){
         http_response_code(400);
-        echo json_encode(['error' => 'File not allowed, only pdf and epub accepted']);
-        exit();
+        exitWithJson(['error' => 'File not allowed, only pdf and epub accepted']);
     }
 
     //Get file mime type
@@ -46,8 +45,7 @@
     //Check file mime type
     if(!isset($allowedMimeTypes[$mime])){
         http_response_code(400);
-        echo json_encode(['error' => 'File not allowed, only pdf and epub accepted']);
-        exit();
+        exitWithJson(['error' => 'File not allowed, only pdf and epub accepted']);
     }
 
     $extension = $allowedMimeTypes[$mime];
@@ -63,8 +61,7 @@
 
         if(!preg_match("/^(\d{10}|\d{13})$/", $isbn)){
             http_response_code(400);
-            echo json_encode(['error' => 'Bad isbn']);
-            exit();
+            exitWithJson(['error' => 'Bad isbn']);
         }
 
         $b->isbn = $isbn;
@@ -84,12 +81,10 @@
     if(move_uploaded_file($_FILES['file']['tmp_name'], $uploadfile)){
         $b->save();
         http_response_code(201);
-        echo json_encode(['error' => NULL]);
-        exit();
+        exitWithJson(['error' => NULL]);
     }
     else{
         http_response_code(500);
-        echo json_encode(['error' => 'Server error moving the file']);
-        exit();
+        exitWithJson(['error' => 'Server error moving the file']);
     }
 ?>

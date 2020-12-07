@@ -34,8 +34,17 @@
         return strcmp($_SERVER["REQUEST_METHOD"], 'POST') === 0;
     }
 
+    function isGet(){
+        return strcmp($_SERVER["REQUEST_METHOD"], 'GET') === 0;
+    }
+
     function escapeString($string){
         return htmlspecialchars($string, ENT_QUOTES, 'UTF-8');
+    }
+
+    function exitWithJson($obj){
+        echo json_encode($obj);
+        exit();
     }
 
 ?>
