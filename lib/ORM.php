@@ -124,7 +124,7 @@
             }
         }
 
-        public static function filter_by($opts = []){
+        public static function filter_by($opts = [], $order_by_field = NULL, $ascending = true){
             $tableName = static::getTableName();
 
             //Build general query
@@ -145,6 +145,12 @@
             if(count($whereClause) > 0){
                 $whereClause = implode(' AND ', $whereClause);
                 $query .= " WHERE {$whereClause}";
+            }
+
+            //Specified column order by
+            if($order_by_field != NULL && array_key_exists($order_by_field, static::getPropertyList())){
+                $query .= " ORDER BY {$order_by_field}";
+                $query .= ($ascending) ? " ASC" : " DESC";
             }
 
             //Both limit and offset are specified

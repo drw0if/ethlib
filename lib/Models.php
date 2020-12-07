@@ -54,23 +54,12 @@
         }
 
         public static function lastTenPublic(){
-            $query = 'SELECT *
-                        FROM Book
-                        WHERE private = false
-                        ORDER BY book_id DESC
-                        LIMIT 10;';
-            try{
-                $db = DB::getInstance();
-                $ans = $db->exec($query, []);
-                foreach($ans as $k => &$v){
-                    $v = static::toObject($v);
-                }
-                return $ans;
-            }
-            catch(Exception $e){
-                throwDatabaseError();
-            }
+            $ans = Book::filter_by(['limit' => 10, 'private' => false], 'book_id', false);
 
+            foreach($ans as $k => &$v)
+                $v = static::toObject($v);
+
+            return $ans;
         }
 
         public function openData(){
