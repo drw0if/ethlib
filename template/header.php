@@ -15,7 +15,9 @@
 <body>
     <header class="page-header">
         <div id="logo">
-            ETHLIB
+            <a href=".">
+                ETHLIB
+            </a>
         </div>
         <form method="GET" action="search.php" class="search-box">
             <input type="text" class="search-input" placeholder="George Orwell" name="query">

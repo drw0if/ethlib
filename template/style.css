@@ -23,6 +23,7 @@ html, body{
 
 /* Start logo */
 #logo{ padding: 10px; font-size: 35px; font-family: monospace; }
+#logo a{ color: inherit; text-decoration: none; }
 /* End logo*/
 
 /* Start Search Box */
@@ -231,8 +232,12 @@ label .form-input{
 }
 
 .book-text{
-    align-self: center;
-    max-width: 33%;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-right: 50px;
+    align-items: center;
 }
 
 .book-button{

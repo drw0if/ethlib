@@ -42,7 +42,6 @@
     $dataToPrint = [
         'title' => 'Titolo originale',
         'publishers' => 'Editore',
-        'isbn_13' => 'ISBN',
     ];
 
 ?>
@@ -68,6 +67,12 @@
                 <div class="col p-10 description-name">Condiviso da:</div>
                 <div class="col p-10 description-value"><?php echo $owner->username; ?></div>
             </div>
+            <?php if($book->isbn != NULL){ ?>
+                <div class="row space-between">
+                    <div class="col p-10 description-name">ISBN:</div>
+                    <div class="col p-10 description-value"><?php echo $book->isbn; ?></div>
+                </div>
+            <?php } ?>
             <?php
                 if($data != NULL){
                     foreach($dataToPrint as $k => $v){
