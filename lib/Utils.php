@@ -42,9 +42,14 @@
         return htmlspecialchars($string, ENT_QUOTES, 'UTF-8');
     }
 
-    function exitWithJson($obj){
+    function exitWithJson($obj, $code = 200){
+        http_response_code($code);
         echo json_encode($obj);
         exit();
+    }
+
+    function isNumber($str){
+        return preg_match("/^-?\d{1,}$/", $str);
     }
 
 ?>
