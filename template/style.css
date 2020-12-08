@@ -284,7 +284,8 @@ label .form-input{
 .text-white{ color: white; }
 .show{ display: block; }
 .space-between{ justify-content: space-between; }
+.flex-center{ justify-content: center; }
 .p-10{ padding: 10px; }
 .p-20{ padding: 20px; }
-.flex-center{ justify-content: center; }
+.m-10{ margin: 10px; }
 .reset-cursor{ cursor: default; }

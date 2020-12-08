@@ -110,13 +110,35 @@
         ?>
         </div>
 
-        <div class="download book-button background-red">
+        <div class="book-button background-red">
             <a href="download?id=1">
                 DOWNLOAD
             </a>
         </div>
     </div>
-    <div>
+    <div class="row m-10">
+        <h2>Review this book</h2>
+    </div>
+    <div class="row form-background p-20">
+        <div class="col">
+            <label for="title" class="d-block">
+                Titolo:
+                <input type="text" id="title" name="title" class="form-input" placeholder="Titolo">
+            </label>
+            <div class="rating">
+                <div class="star active"></div>
+                <div class="star active"></div>
+                <div class="star active"></div>
+                <div class="star active"></div>
+                <div class="star active"></div>
+            </div>
+            <textarea name="content" id="" cols="50" rows="10"></textarea>
+        </div>
+        <div class="col">
+            <div class="col">
+                <input type="button" class="form-input form-button background-red p-20" value="INVIA">
+            </div>
+        </div>
     </div>
 
 <?php require_once __DIR__ . "/template/footer.php" ?>
