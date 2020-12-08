@@ -116,29 +116,41 @@
             </a>
         </div>
     </div>
-    <div class="row m-10">
-        <h2>Review this book</h2>
-    </div>
-    <div class="row form-background p-20">
-        <div class="col">
-            <label for="title" class="d-block">
-                Titolo:
-                <input type="text" id="title" name="title" class="form-input" placeholder="Titolo">
-            </label>
-            <div class="rating">
-                <div class="star active"></div>
-                <div class="star active"></div>
-                <div class="star active"></div>
-                <div class="star active"></div>
-                <div class="star active"></div>
-            </div>
-            <textarea name="content" id="" cols="50" rows="10"></textarea>
+    <?php if(isLogged()){ ?>
+        <div class="row m-10">
+            <h2>Review this book</h2>
         </div>
-        <div class="col">
+        <div class="row form-background p-20">
             <div class="col">
-                <input type="button" class="form-input form-button background-red p-20" value="INVIA">
+                <label for="title" class="d-block">
+                    Titolo:
+                    <input type="text" id="title" name="title" class="form-input" placeholder="Titolo">
+                </label>
+                <div class="rating reversed">
+                    <input type="radio" class="star-radio" id="rate5" name="rate" value="5"/>
+                    <label for="rate5" class="star"></label>
+
+                    <input type="radio" class="star-radio" id="rate4" name="rate" value="4"/>
+                    <label for="rate4" class="star"></label>
+
+                    <input type="radio" class="star-radio" id="rate3" name="rate" value="3"/>
+                    <label for="rate3" class="star"></label>
+
+                    <input type="radio" class="star-radio" id="rate2" name="rate" value="2"/>
+                    <label for="rate2" class="star"></label>
+
+                    <input type="radio" class="star-radio" id="rate1" name="rate" value="1"/>
+                    <label for="rate1" class="star"></label>
+                </div>
+                <textarea name="content" id="content" cols="50" rows="10" placeholder="Contenuto"></textarea>
+            </div>
+            <div class="col">
+                <div class="col">
+                    <div class="error-banner"></div>
+                    <input type="button" id="submit" class="form-input form-button background-red p-20" value="INVIA">
+                </div>
             </div>
         </div>
-    </div>
-
+        <script src="js/book.js"></script>
+    <?php } ?>
 <?php require_once __DIR__ . "/template/footer.php" ?>

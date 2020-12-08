@@ -272,7 +272,18 @@ label .form-input{
     content: '★ ';
 }
 
-.active{
+.star-radio{
+    display: none;
+}
+
+.reversed{
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: flex-end;
+}
+
+.active,
+.star-radio:checked ~ .star{
     color: rgb(231, 231, 38);
 }
 
