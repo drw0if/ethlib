@@ -15,7 +15,7 @@
 
         <input type="file" name="file" id="file-input" accept="application/pdf,application/epub+zip">
 
-        <div class="centered-container form-background padded-container">
+        <div class="centered-container form-background p-20">
             <label for="private" class="d-block center">
                 <input type="checkbox" id="private" name="private">
                 Privato

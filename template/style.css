@@ -245,7 +245,7 @@ label .form-input{
     border-radius: 10px;
 }
 
-.book-button a{
+.book-button *{
     color: white;
     display: block;
     padding: 15px;
@@ -280,11 +280,11 @@ label .form-input{
 .center{ text-align: center; }
 .form-background{ background-color: #eee; }
 .d-block{ display: block; }
-.padded-container{ padding: 20px; }
 .background-red{ background-color:#ee5253; }
 .text-white{ color: white; }
 .show{ display: block; }
 .space-between{ justify-content: space-between; }
 .p-10{ padding: 10px; }
+.p-20{ padding: 20px; }
 .flex-center{ justify-content: center; }
 .reset-cursor{ cursor: default; }
