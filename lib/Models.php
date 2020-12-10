@@ -41,15 +41,15 @@
         public $local_name;
         public $file_type;
         public $name;
-        public $mark_sum;
-        public $mark_count;
+        public $rating_sum;
+        public $rating_count;
         public $private;
         public $user_id;
 
         public function __construct(){
             $this->isbn = new DefaultValue();
-            $this->mark_sum = new DefaultValue();
-            $this->mark_count = new DefaultValue();
+            $this->rating_sum = new DefaultValue();
+            $this->rating_count = new DefaultValue();
             $this->private = new DefaultValue();
         }
 
@@ -87,17 +87,11 @@
 
     }
 
-    class Mark extends Entity{
-        public $mark_id;
-        public $value;
-        public $user_id;
-        public $book_id;
-    }
-
     class Review extends Entity{
         public $review_id;
         public $title;
         public $content;
+        public $rating;
         public $user_id;
         public $book_id;
     }
