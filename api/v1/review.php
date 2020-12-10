@@ -13,7 +13,6 @@
         -) title    (required)
         -) content  (required)
         -) rating   (required in range [1, 5])
-        -) edit     (as a GET parameter)
     */
 
     session_start();
@@ -73,21 +72,17 @@
     function reviewPost(){
         //Check and get parameters
         $params = checkArgs();
-        $edit = isset($_GET["edit"]);
 
-        //Check if no review are made on the same book by the same user
+        //Get old or new Review object
         $reviews = Review::filter_by([
             "book_id" => $params["book_id"],
             "user_id" => $_SESSION["user_id"]
         ]);
-
-        //Check if attempted duplication
-        if(count($reviews) > 0 && !$edit){
-            exitWithJson(["error" => "Duplicated review"], 403);
+        if(count($reviews) > 0){
+            $review = Review::toObject($reviews[0]);
+            $params["book"]->rating_sum -= $review->rating;
+            $params["book"]->rating_count--;
         }
-
-        //Get old or new Review object
-        if($edit && count($reviews) > 0)   $review = Review::toObject($reviews[0]);
         else         $review = new Review();
 
         //Add or edit data
@@ -95,32 +90,14 @@
         $review->content = $params["content"];
         $review->user_id = $_SESSION["user_id"];
         $review->book_id = $params["book_id"];
-
-
-        //Get old or new Mark object
-        if($edit && count($reviews) > 0){
-            $mark = Mark::toObject(Mark::filter_by([
-                "book_id" => $params["book_id"],
-                "user_id" => $_SESSION["user_id"]
-            ])[0]);
-
-            $params["book"]->mark_sum -= $mark->value;
-            $params["book"]->mark_count--;
-        }
-        else        $mark = new Mark();
-
-        //Add or edit data
-        $mark->value = $params["rating"];
-        $mark->user_id = $_SESSION["user_id"];
-        $mark->book_id = $params["book_id"];
+        $review->rating = $params["rating"];
 
         //Update review values
-        $params["book"]->mark_sum += $params["rating"];
-        $params["book"]->mark_count++;
+        $params["book"]->rating_sum += $params["rating"];
+        $params["book"]->rating_count++;
 
         //Save data
         $review->save();
-        $mark->save();
         $params["book"]->save();
 
         exitWithJson(["error" => NULL], 201);
@@ -164,6 +141,7 @@
             $tmp = [];
             $tmp['title'] = $v['title'];
             $tmp['content'] = $v['content'];
+            $tmp['rating'] = $v['rating'];
             $tmp['username'] = User::filter_by([
                 'user_id' => $v['user_id']
             ])[0]['username'];

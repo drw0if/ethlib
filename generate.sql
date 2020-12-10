@@ -23,29 +23,14 @@ CREATE TABLE `Book`(
     `local_name` VARCHAR(64) NOT NULL,
     `file_type` VARCHAR(5) NOT NULL,
     `name` VARCHAR(100) NOT NULL,
-    `mark_sum` FLOAT NOT NULL DEFAULT 0,
-    `mark_count` INT NOT NULL DEFAULT 0,
+    `rating_sum` FLOAT NOT NULL DEFAULT 0,
+    `rating_count` INT NOT NULL DEFAULT 0,
     `private` BOOLEAN NOT NULL DEFAULT 0,
 
     `user_id` INT NOT NULL,
 
     PRIMARY KEY (`book_id`),
     FOREIGN KEY (`user_id`) REFERENCES `User`(`user_id`)
-)ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- -------
--- Mark --
--- -------
-CREATE TABLE `Mark`(
-    `mark_id` INT NOT NULL AUTO_INCREMENT,
-    `value` FLOAT NOT NULL CHECK (`value` >= 0 AND `value` <= 5),
-
-    `user_id` INT NOT NULL,
-    `book_id` INT NOT NULL,
-
-    PRIMARY KEY (`mark_id`),
-    FOREIGN KEY (`user_id`) REFERENCES `User`(`user_id`),
-    FOREIGN KEY (`book_id`) REFERENCES `Book`(`book_id`)
 )ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- ---------
@@ -55,6 +40,7 @@ CREATE TABLE `Review`(
     `review_id` INT NOT NULL AUTO_INCREMENT,
     `title` VARCHAR(100) NOT NULL,
     `content` TEXT NOT NULL,
+    `rating` FLOAT NOT NULL CHECK (`rating` >= 0 AND `rating` <= 5),
 
     `user_id` INT NOT NULL,
     `book_id` INT NOT NULL,
