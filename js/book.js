@@ -1,13 +1,141 @@
 const modal = new Modal(document.getElementsByClassName('modal')[0]);
+
+let book_id = null;
+
+const clearChildren = function(el){
+    while(el.firstChild)
+        el.removeChild(el.lastChild)
+}
+
+const addInfo = function(name, value){
+    let bookInfo = document.getElementById('book-info');
+
+    let row = document.createElement('div');
+    row.classList.add('row');
+    row.classList.add('space-between');
+
+    let infoLabel = document.createElement('div');
+    infoLabel.classList.add('col');
+    infoLabel.classList.add('p-10');
+    infoLabel.classList.add('description-name');
+    infoLabel.innerText = name + ':';
+
+    let infoValue = document.createElement('div');
+    infoValue.classList.add('col');
+    infoValue.classList.add('p-10');
+    infoValue.classList.add('description-value');
+    infoValue.innerText = value;
+
+    row.append(infoLabel, infoValue);
+    bookInfo.append(row);
+}
+
+const setCoverImage = function(src){
+    let bookCover = document.getElementById('book-cover');
+
+    bookCover.style.border = 'none';
+    let img = document.createElement('img');
+    img.src = src;
+    img.alt = bookName;
+    bookCover.appendChild(img);
+}
+
+const addRate = function(rating){
+    const ratingRow = document.getElementById('rating-row');
+
+    clearChildren(ratingRow)
+
+    let i = 0;
+
+    const makeStar = (active) => {
+        let tmp = document.createElement('div');
+        tmp.classList.add('star');
+        if(active)
+            tmp.classList.add('active');
+        return tmp;
+    }
+
+    for(; i < rating; i++)
+        ratingRow.appendChild(makeStar(true));
+
+    for(; i < 5; i++)
+        ratingRow.appendChild(makeStar(false));
+}
+
+const addDownloadLink = function(){
+    let downloadLink = document.getElementById('download-button');
+    downloadLink.href = `download?book_id=${book_id}`;
+}
+
+const openLibraryCall = function(isbn, bookName){
+    let isbnEndpoint = `https://openlibrary.org/isbn/${isbn}.json`;
+
+    fetch(isbnEndpoint)
+    .then((res)=>{
+        if(res.status != 200){
+            document.getElementById('book-cover').innerText = bookName;
+            return
+        }
+
+        res.json()
+        .then(data => {
+            setCoverImage(`http://covers.openlibrary.org/b/isbn/${isbn}-M.jpg`);
+            addInfo('Titolo originale', data.title);
+            addInfo('Editore', data.publishers);
+        })
+    })
+}
+
+
+const show = function(){
+    fetch('api/v1/book.php?book_id=' + book_id)
+    .then(res => {
+        if(res.status != 200){
+            modal.setTitle('Errore');
+            modal.setContent('Libro non esistente');
+            modal.show();
+            return;
+        }
+
+        res.json()
+        .then(data => {
+            if(data.isbn != null){
+                addInfo('ISBN', data.isbn);
+                openLibraryCall(data.isbn, data.name);
+            }
+            else{
+                document.getElementById('book-cover').innerText = data.name;
+            }
+
+            document.getElementById('bookName').innerText = data.name;
+            document.getElementById('ownerName').innerText = data.ownerName;
+
+            addRate(data.rating);
+            addDownloadLink();
+
+        })
+    })
+}
+
+const queryString = document.location.search;
+const getParams = new URLSearchParams(queryString);
+if(getParams.has('book_id')){
+    book_id = getParams.get('book_id');
+    show();
+}
+else{
+    modal.setContent('Nessun libro specificato');
+    modal.setTitle('Errore');
+    modal.show();
+}
+
 const errorBanner = document.getElementsByClassName("error-banner")[0];
-const showError = function(msg) {
+const showFormError = function(msg) {
     errorBanner.innerText = msg;
 }
 
 document.getElementById('submit').onclick = function(){
 
-    let book_id = document.getElementById('book_id').value;
-    let edit = document.getElementById('edit').value;
     let title = document.getElementById('title').value.trim();
     let content = document.getElementById('content').value.trim();
     let checkedStar = Array.from(
@@ -15,7 +143,7 @@ document.getElementById('submit').onclick = function(){
     ).filter((x) => x.checked);
 
     if(title.length == 0 || content.length == 0 || checkedStar.length == 0){
-        showError('Specificare titolo, descrizione e voto!');
+        showFormError('Specificare titolo, descrizione e voto!');
         return false;
     }
 
@@ -26,8 +154,6 @@ document.getElementById('submit').onclick = function(){
     data.append('rating', checkedStar[0].value);
 
     let apiEndpoint = 'api/v1/review.php';
-    if(edit)
-        apiEndpoint += '?edit';
 
     fetch(apiEndpoint,{
         method : 'POST',
@@ -35,11 +161,11 @@ document.getElementById('submit').onclick = function(){
     }).then((res) => {
         if(res.status == 201){
             modal.setTitle("Recensione completata");
-            if(edit)
-                modal.setContent("Recensione modificata correttamente!");
-            else
-                modal.setContent("Recensione aggiunta correttamente!");
-            document.getElementById('edit').value = 1;
+            modal.setContent("Recensione aggiunta correttamente!");
+        }
+        else if(res.status == 202){
+            modal.setTitle("Recensione modificata");
+            modal.setContent("Recensione modificata correttamente");
         }
         else{
             modal.setTitle("Errore");
@@ -48,5 +174,5 @@ document.getElementById('submit').onclick = function(){
         modal.show();
     });
 
-    showError('');
+    showFormError('');
 }
