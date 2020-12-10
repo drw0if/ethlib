@@ -100,7 +100,7 @@
         $review->save();
         $params["book"]->save();
 
-        exitWithJson(["error" => NULL], 201);
+        exitWithJson(["error" => NULL], ($review->review_id) ? 202 : 201);
     }
 
     function reviewGet(){
