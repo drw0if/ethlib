@@ -48,7 +48,7 @@
         $books = Book::filter_by([
             "book_id" => $book_id
         ]);
-        if(count($books) == 0 || $books[0]->private){
+        if(count($books) == 0 || $books[0]['private']){
             exitWithJson(["error" => "No book found"], 404);
         }
 
@@ -64,7 +64,8 @@
             "book_id" => $book_id,
             "title" => $title,
             "content" => $content,
-            "rating" => $rating
+            "rating" => $rating,
+            "book" => Book::toObject($books[0])
         ];
     }
 
@@ -75,18 +76,18 @@
         $edit = isset($_GET["edit"]);
 
         //Check if no review are made on the same book by the same user
-        $ans = Review::filter_by([
+        $reviews = Review::filter_by([
             "book_id" => $params["book_id"],
             "user_id" => $_SESSION["user_id"]
         ]);
 
         //Check if attempted duplication
-        if(count($ans) > 0 && !$edit){
+        if(count($reviews) > 0 && !$edit){
             exitWithJson(["error" => "Duplicated review"], 403);
         }
 
         //Get old or new Review object
-        if($edit && count($ans) > 0)   $review = Review::toObject($ans[0]);
+        if($edit && count($reviews) > 0)   $review = Review::toObject($reviews[0]);
         else         $review = new Review();
 
         //Add or edit data
@@ -97,10 +98,15 @@
 
 
         //Get old or new Mark object
-        if($edit && count($ans) > 0)   $mark = Mark::toObject(Mark::filter_by([
-            "book_id" => $params["book_id"],
-            "user_id" => $_SESSION["user_id"]
-        ])[0]);
+        if($edit && count($reviews) > 0){
+            $mark = Mark::toObject(Mark::filter_by([
+                "book_id" => $params["book_id"],
+                "user_id" => $_SESSION["user_id"]
+            ])[0]);
+
+            $params["book"]->mark_sum -= $mark->value;
+            $params["book"]->mark_count--;
+        }
         else        $mark = new Mark();
 
         //Add or edit data
@@ -108,9 +114,14 @@
         $mark->user_id = $_SESSION["user_id"];
         $mark->book_id = $params["book_id"];
 
+        //Update review values
+        $params["book"]->mark_sum += $params["rating"];
+        $params["book"]->mark_count++;
+
         //Save data
         $review->save();
         $mark->save();
+        $params["book"]->save();
 
         exitWithJson(["error" => NULL], 201);
     }

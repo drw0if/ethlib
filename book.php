@@ -116,7 +116,24 @@
             </a>
         </div>
     </div>
-    <?php if(isLogged()){ ?>
+    <?php
+        if(isLogged()){
+            $review = Review::filter_by([
+                'user_id' => $_SESSION['user_id'],
+                'book_id' => $book->book_id
+            ]);
+            $review = (count($review) > 0)
+                ? $review = $review[0]
+                : NULL;
+
+            $mark = Mark::filter_by([
+                'user_id' => $_SESSION['user_id'],
+                'book_id' => $book->book_id
+            ]);
+            $mark = (count($mark) > 0)
+                ? $mark = $mark[0]
+                : NULL;
+    ?>
         <div class="row m-10">
             <h2>Review this book</h2>
         </div>
@@ -124,33 +141,53 @@
             <div class="col">
                 <label for="title" class="d-block">
                     Titolo:
-                    <input type="text" id="title" name="title" class="form-input" placeholder="Titolo">
+                    <input type="text" id="title" name="title" class="form-input" placeholder="Titolo" value="<?php if(!is_null($review)) echo $review['title'] ?>">
                 </label>
                 <div class="rating reversed">
-                    <input type="radio" class="star-radio" id="rate5" name="rate" value="5"/>
-                    <label for="rate5" class="star"></label>
-
-                    <input type="radio" class="star-radio" id="rate4" name="rate" value="4"/>
-                    <label for="rate4" class="star"></label>
-
-                    <input type="radio" class="star-radio" id="rate3" name="rate" value="3"/>
-                    <label for="rate3" class="star"></label>
-
-                    <input type="radio" class="star-radio" id="rate2" name="rate" value="2"/>
-                    <label for="rate2" class="star"></label>
-
-                    <input type="radio" class="star-radio" id="rate1" name="rate" value="1"/>
-                    <label for="rate1" class="star"></label>
+                <?php
+                    for($i = 5; $i > 0; $i--){
+                ?>
+                    <input type="radio" class="star-radio" id="rate<?php echo $i; ?>" name="rate" value="<?php echo $i; ?>" <?php if(!is_null($mark) && $mark['value'] == $i) echo "checked"; ?>/>
+                    <label for="rate<?php echo $i; ?>" class="star"></label>
+                <?php
+                    }
+                ?>
                 </div>
-                <textarea name="content" id="content" cols="50" rows="10" placeholder="Contenuto"></textarea>
+                <textarea name="content" id="content" cols="50" rows="10" placeholder="Contenuto"><?php if(!is_null($review)) echo $review['content'] ?></textarea>
             </div>
             <div class="col">
                 <div class="col">
                     <div class="error-banner"></div>
+                    <input type="hidden" id="edit" value="<?php echo !is_null($review) ?>">
+                    <input type="hidden" id="book_id" value="<?php echo $book->book_id ?>">
                     <input type="button" id="submit" class="form-input form-button background-red p-20" value="INVIA">
                 </div>
             </div>
         </div>
-        <script src="js/book.js"></script>
     <?php } ?>
-<?php require_once __DIR__ . "/template/footer.php" ?>
+
+    <div class="modal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <header>
+                    <p></p>
+                    <button class="modal-close">
+                        X
+                    </button>
+                </header>
+                <div class="modal-main">
+                    <p class="modal-text"></p>
+                </div>
+                <footer>
+                    <button class="modal-button background-red text-white">
+                        OK
+                    </button>
+                </footer>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/modal.js"></script>
+    <script src="js/book.js"></script>
+
+    <?php require_once __DIR__ . "/template/footer.php" ?>

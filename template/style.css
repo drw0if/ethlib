@@ -269,7 +269,7 @@ label .form-input{
 }
 
 .star:before{
-    content: '★ ';
+    content: '\2605';
 }
 
 .star-radio{
