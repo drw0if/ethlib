@@ -254,11 +254,11 @@ label .form-input{
 
 .description-name{
     font-weight: bold;
-    font-size: 21px;
+    font-size: 17px;
 }
 
 .description-value{
-    font-size: 21px;
+    font-size: 17px;
     font-style: italic;
 }
 
@@ -287,6 +287,23 @@ label .form-input{
     color: rgb(231, 231, 38);
 }
 
+.review-top{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: baseline;
+    padding: 10px;
+}
+
+.review-title{
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.review-text{
+    padding: 20px;
+}
+
 /*                      Attributes                      */
 .center{ text-align: center; }
 .form-background{ background-color: #eee; }
@@ -296,7 +313,9 @@ label .form-input{
 .show{ display: block; }
 .space-between{ justify-content: space-between; }
 .flex-center{ justify-content: center; }
+.start{ justify-content: start; }
 .p-10{ padding: 10px; }
 .p-20{ padding: 20px; }
 .m-10{ margin: 10px; }
 .reset-cursor{ cursor: default; }
+.w-100{ width: 100%; }

@@ -31,10 +31,10 @@
         </div>
     </div>
 
-    <div class="row m-10">
-        <h2>Review this book</h2>
-    </div>
 <?php if(isLogged()) { ?>
+    <div class="row m-10">
+        <h2>Recensisci questo libro</h2>
+    </div>
     <div class="row form-background p-20">
         <div class="col">
             <label for="title" class="d-block">
@@ -62,6 +62,12 @@
     </div>
 <?php } ?>
 
+    <div class="row m-10">
+        <h2>Recensioni per questo libro</h2>
+    </div>
+
+    <div id="reviews" class="col">
+    </div>
 
     <div class="modal">
         <div class="modal-dialog">

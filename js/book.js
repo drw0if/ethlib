@@ -40,10 +40,8 @@ const setCoverImage = function(src, bookName){
     bookCover.appendChild(img);
 }
 
-const addRate = function(rating){
-    const ratingRow = document.getElementById('rating-row');
-
-    clearChildren(ratingRow)
+const addRateRow = function(el, rating){
+    clearChildren(el)
 
     let i = 0;
 
@@ -56,10 +54,10 @@ const addRate = function(rating){
     }
 
     for(; i < rating; i++)
-        ratingRow.appendChild(makeStar(true));
+        el.appendChild(makeStar(true));
 
     for(; i < 5; i++)
-        ratingRow.appendChild(makeStar(false));
+        el.appendChild(makeStar(false));
 }
 
 const addDownloadLink = function(){
@@ -86,6 +84,52 @@ const openLibraryCall = function(isbn, bookName){
     })
 }
 
+const showReviews = function(){
+    let reviewDiv = document.getElementById('reviews');
+
+    fetch(`api/v1/review.php?book_id=${book_id}`).then(res => {
+        if(res.status != 200)
+            return;
+
+        res.json().then(data => {
+            data.forEach(x => {
+                let reviewTitleDiv = document.createElement('div');
+                reviewTitleDiv.classList.add('review-title');
+                reviewTitleDiv.innerText = x.title;
+
+                let reviewRating = document.createElement('div');
+                reviewRating.classList.add('rating-row');
+                addRateRow(reviewRating, x.rating);
+
+                let reviewTopDiv = document.createElement('div');
+                reviewTopDiv.classList.add('row');
+                reviewTopDiv.classList.add('review-top');
+
+                reviewTopDiv.append(reviewTitleDiv, reviewRating)
+
+                let reviewTextDiv = document.createElement('div');
+                reviewTextDiv.classList.add('review-text');
+                reviewTextDiv.innerText = x.content;
+
+
+                let col = document.createElement('div');
+                col.classList.add('col');
+                col.classList.add('w-100');
+                col.append(reviewTopDiv, reviewTextDiv);
+
+                let reviewRow = document.createElement('div');
+                reviewRow.classList.add('row');
+                reviewRow.classList.add('start')
+
+                reviewRow.append(col);
+
+                reviewDiv.append(reviewRow);
+            });
+        })
+
+    })
+
+}
 
 /* Render function */
 const show = function(){
@@ -111,10 +155,12 @@ const show = function(){
             document.getElementById('bookName').innerText = data.name;
             document.getElementById('ownerName').innerText = data.ownerName;
 
-            addRate(data.rating);
+            addRateRow(document.getElementById('rating-row'), data.rating);
             addDownloadLink();
 
         })
+
+        showReviews();
     })
 }
 
