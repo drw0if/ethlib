@@ -1,5 +1,6 @@
 <?php
     session_start();
+    require_once __DIR__ . "/lib/Utils.php";
 ?>
 <?php require_once __DIR__ . "/template/header.php" ?>
 
@@ -33,7 +34,7 @@
     <div class="row m-10">
         <h2>Review this book</h2>
     </div>
-
+<?php if(isLogged()) { ?>
     <div class="row form-background p-20">
         <div class="col">
             <label for="title" class="d-block">
@@ -59,6 +60,7 @@
             </div>
         </div>
     </div>
+<?php } ?>
 
 
     <div class="modal">

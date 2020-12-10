@@ -30,7 +30,7 @@ const addInfo = function(name, value){
     bookInfo.append(row);
 }
 
-const setCoverImage = function(src){
+const setCoverImage = function(src, bookName){
     let bookCover = document.getElementById('book-cover');
 
     bookCover.style.border = 'none';
@@ -79,7 +79,7 @@ const openLibraryCall = function(isbn, bookName){
 
         res.json()
         .then(data => {
-            setCoverImage(`http://covers.openlibrary.org/b/isbn/${isbn}-M.jpg`);
+            setCoverImage(`http://covers.openlibrary.org/b/isbn/${isbn}-M.jpg`, bookName);
             addInfo('Titolo originale', data.title);
             addInfo('Editore', data.publishers);
         })
@@ -87,6 +87,7 @@ const openLibraryCall = function(isbn, bookName){
 }
 
 
+/* Render function */
 const show = function(){
     fetch('api/v1/book.php?book_id=' + book_id)
     .then(res => {
@@ -117,6 +118,7 @@ const show = function(){
     })
 }
 
+/* Main */
 const queryString = document.location.search;
 const getParams = new URLSearchParams(queryString);
 if(getParams.has('book_id')){
@@ -129,50 +131,54 @@ else{
     modal.show();
 }
 
+/* Form handler */
 const errorBanner = document.getElementsByClassName("error-banner")[0];
 const showFormError = function(msg) {
     errorBanner.innerText = msg;
 }
 
-document.getElementById('submit').onclick = function(){
+const submitButton = document.getElementById('submit');
+if(submitButton != null){
+    submitButton.onclick = function(){
 
-    let title = document.getElementById('title').value.trim();
-    let content = document.getElementById('content').value.trim();
-    let checkedStar = Array.from(
-        document.getElementsByClassName('star-radio')
-    ).filter((x) => x.checked);
+        let title = document.getElementById('title').value.trim();
+        let content = document.getElementById('content').value.trim();
+        let checkedStar = Array.from(
+            document.getElementsByClassName('star-radio')
+        ).filter((x) => x.checked);
 
-    if(title.length == 0 || content.length == 0 || checkedStar.length == 0){
-        showFormError('Specificare titolo, descrizione e voto!');
-        return false;
+        if(title.length == 0 || content.length == 0 || checkedStar.length == 0){
+            showFormError('Specificare titolo, descrizione e voto!');
+            return false;
+        }
+
+        let data = new FormData();
+        data.append('book_id', book_id);
+        data.append('title', title);
+        data.append('content', content);
+        data.append('rating', checkedStar[0].value);
+
+        let apiEndpoint = 'api/v1/review.php';
+
+        fetch(apiEndpoint,{
+            method : 'POST',
+            body: data
+        }).then((res) => {
+            if(res.status == 201){
+                modal.setTitle("Recensione completata");
+                modal.setContent("Recensione aggiunta correttamente!");
+            }
+            else if(res.status == 202){
+                modal.setTitle("Recensione modificata");
+                modal.setContent("Recensione modificata correttamente");
+            }
+            else{
+                modal.setTitle("Errore");
+                modal.setContent("Errore durante l'aggiunta della recensione!");
+            }
+            modal.show();
+        });
+
+        showFormError('');
     }
-
-    let data = new FormData();
-    data.append('book_id', book_id);
-    data.append('title', title);
-    data.append('content', content);
-    data.append('rating', checkedStar[0].value);
-
-    let apiEndpoint = 'api/v1/review.php';
-
-    fetch(apiEndpoint,{
-        method : 'POST',
-        body: data
-    }).then((res) => {
-        if(res.status == 201){
-            modal.setTitle("Recensione completata");
-            modal.setContent("Recensione aggiunta correttamente!");
-        }
-        else if(res.status == 202){
-            modal.setTitle("Recensione modificata");
-            modal.setContent("Recensione modificata correttamente");
-        }
-        else{
-            modal.setTitle("Errore");
-            modal.setContent("Errore durante l'aggiunta della recensione!");
-        }
-        modal.show();
-    });
-
-    showFormError('');
 }
