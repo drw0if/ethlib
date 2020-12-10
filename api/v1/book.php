@@ -42,6 +42,7 @@
     $ans['isbn'] = $book->isbn;
     $ans['name'] = $book->name;
     $ans['rating'] = round(intval($book->mark_sum)/max(intval($book->mark_count), 1));
+    $ans['ownerName'] = $owner->username;
 
     exitWithJson($ans, 200);
 ?>
