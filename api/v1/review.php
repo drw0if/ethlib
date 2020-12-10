@@ -128,6 +128,14 @@
             $offset = intval($_GET["offset"]);
         }
 
+        //Check if book exists and is public
+        $books = Book::filter_by([
+            "book_id" => $book_id
+        ]);
+        if(count($books) == 0 || $books[0]['private']){
+            exitWithJson(["error" => "No book found"], 404);
+        }
+
         //Get Reviews
         $result = Review::filter_by([
             'book_id' => $book_id,
