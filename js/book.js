@@ -62,7 +62,7 @@ const addRateRow = function(el, rating){
 
 const addDownloadLink = function(){
     let downloadLink = document.getElementById('download-button');
-    downloadLink.href = `download?book_id=${book_id}`;
+    downloadLink.href = `download.php?book_id=${book_id}`;
 }
 
 const openLibraryCall = function(isbn, bookName){

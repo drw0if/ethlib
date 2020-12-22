@@ -5,6 +5,9 @@
         'application/pdf' => '.pdf',           //pdf
         'application/epub+zip' => '.epub'      //epub
     ];
+
+    $contentTypes = array_flip($allowedMimeTypes);
+
     define('STORAGE', __DIR__ . '\..\upload\\');
 
 
