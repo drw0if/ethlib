@@ -85,6 +85,19 @@
             return $decoded;
         }
 
+        public static function search($query){
+            $args = ["%" . $query . "%"];
+            $query = "SELECT * FROM Book WHERE name LIKE ?";
+
+            $db = DB::getInstance();
+            $ans = $db->exec($query, $args);
+
+            foreach($ans as $k => &$v)
+                $v = static::toObject($v);
+
+            return $ans;
+        }
+
     }
 
     class Review extends Entity{

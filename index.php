@@ -5,7 +5,7 @@
     $result = [];
 
     if(isset($_GET['query']) && !empty($_GET['query'])){
-
+        $result = Book::search($_GET['query']);
     }
     else{
         $result = Book::lastTenPublic();

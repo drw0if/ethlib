@@ -19,7 +19,7 @@
                 ETHLIB
             </a>
         </div>
-        <form method="GET" action="search.php" class="search-box">
+        <form method="GET" action="" class="search-box">
             <input type="text" class="search-input" placeholder="George Orwell" name="query">
             <input type="submit" class="search-button" value="&#128269;">
         </form>
