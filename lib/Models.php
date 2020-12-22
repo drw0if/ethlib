@@ -62,29 +62,6 @@
             return $ans;
         }
 
-        public function openData(){
-            if($this->isbn == NULL) return NULL;
-            $isbnEndpoint = "https://openlibrary.org/isbn/{$this->isbn}.json";
-
-            $ch = curl_init($isbnEndpoint);
-
-            //Follow redirect since api does that
-            curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
-            //Follow maximum 1 redirect
-            curl_setopt($ch, CURLOPT_MAXREDIRS, 1);
-            //Ignore self signed SSL certificate
-            curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-            //Return response body insted of printing it
-            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-
-            $result = curl_exec($ch);
-            curl_close($ch);
-
-            $decoded = json_decode($result);
-
-            return $decoded;
-        }
-
         public static function search($query){
             $args = ["%" . $query . "%"];
             $query = "SELECT * FROM Book WHERE name LIKE ?";
