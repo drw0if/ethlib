@@ -7,8 +7,8 @@
 
     session_start();
 
-    require_once __DIR__ . "/../../lib/Utils.php";
-    require_once __DIR__ . "/../../lib/Models.php";
+    require_once __DIR__ . '/../../lib/Utils.php';
+    require_once __DIR__ . '/../../lib/Models.php';
 
     //If no book requested die
     if(!isset($_GET['book_id']) || !is_string($_GET['book_id']) || empty(trim($_GET['book_id']))){

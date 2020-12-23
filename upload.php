@@ -1,13 +1,13 @@
 <?php
     session_start();
-    require_once __DIR__ . "/lib/Utils.php";
+    require_once __DIR__ . '/lib/Utils.php';
 
     if(!isLogged()){
-        header("Location: signin.php");
+        header('Location: signin.php');
     }
 ?>
 
-<?php require_once __DIR__ . "/template/header.php"; ?>
+<?php require_once __DIR__ . '/template/header.php"' ?>
 
     <div class="row">
         <label for="file-input" id="file-label" class="book-title-box">
@@ -65,4 +65,4 @@
 
     <script src="js/modal.js"></script>
     <script src="js/upload.js"></script>
-<?php require_once __DIR__ . "/template/footer.php"; ?>
+<?php require_once __DIR__ . '/template/footer.php'; ?>

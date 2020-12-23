@@ -1,6 +1,6 @@
 <?php
 
-    require_once __DIR__ . "/ORM.php";
+    require_once __DIR__ . '/ORM.php';
 
     class User extends Entity{
         public $user_id;
@@ -18,19 +18,20 @@
         }
 
         public static function login($username, $password){
-            $resultSet = parent::filter_by([
+            $ans = static::filter_by([
                 'username' => $username
             ]);
 
-            if(count($resultSet) == 0)
+            if(count($ans) == 0)
                 return null;
 
-            $record = $resultSet[0];
+            $record = $ans[0];
 
             if(password_verify($password, $record['hash'])){
-                return parent::toObject($record);
+                return static::toObject($record);
             }
 
+            return null;
         }
 
     }
@@ -54,8 +55,8 @@
         }
 
         public static function search($query, $offset = 0){
-            $args = ["%" . $query . "%", $offset];
-            $query = "SELECT `book_id`, `isbn`, `name`  FROM Book WHERE private = FALSE AND name LIKE ? LIMIT ?, 10";
+            $args = ['%' . $query . '%', $offset];
+            $query = 'SELECT `book_id`, `isbn`, `name`  FROM Book WHERE private = FALSE AND name LIKE ? LIMIT ?, 10';
 
             $db = DB::getInstance();
             $ans = $db->exec($query, $args);

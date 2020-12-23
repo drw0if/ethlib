@@ -1,41 +1,42 @@
 <?php
 
     session_start();
-    require_once __DIR__ . "/lib/Utils.php";
+    require_once __DIR__ . '/lib/Utils.php';
+    require_once __DIR__ . "/lib/Models.php";
 
     function signupPost(){
         $ans = [
-            "user_id" => null,
-            "error" => null,
+            'user_id' => null,
+            'error' => null,
         ];
 
-        if(!isset($_POST["email"]) || !isset($_POST["password"]) || !isset($_POST["username"])){
-            $ans["error"] = "Ci sono dei valori mancanti!";
+        if(!isset($_POST['email']) || !is_string($_POST['email']) ||
+            !isset($_POST['password']) || !is_string($_POST['password']) ||
+            !isset($_POST['username']) || !is_string($_POST['username'])){
+            $ans['error'] = 'Ci sono dei valori mancanti!';
             return $ans;
         }
 
-        $email = trim($_POST["email"]);
-        if(strlen($email) === 0 || !filter_var($email, FILTER_VALIDATE_EMAIL)){
-            $ans["error"] = "L'email inserita non è valida!";
+        $email = trim($_POST['email']);
+        if(!filter_var($email, FILTER_VALIDATE_EMAIL)){
+            $ans['error'] = "L'email inserita non è valida!";
             return $ans;
         }
 
-        $username = trim($_POST["username"]);
+        $username = trim($_POST['username']);
         if(strlen($username) === 0){
-            $ans["error"] = "L'username inserito non è valido!";
+            $ans['error'] = "L'username inserito non è valido!";
             return $ans;
         }
 
-        $password = trim($_POST["password"]);
+        $password = trim($_POST['password']);
         if(strlen($password) < 8 || !preg_match("/[a-z]/", $password) ||
             !preg_match("/[A-Z]/", $password) || !preg_match("/\d/", $password) ||
             !preg_match("/\W|_/", $password)){
 
-            $ans["error"] = "La password non rispetta i criteri minimi di sicurezza!";
+            $ans['error'] = 'La password non rispetta i criteri minimi di sicurezza!';
             return $ans;
         }
-
-        require_once __DIR__ . "/lib/Models.php";
 
         $newUser = new User();
         $newUser->email = $email;
@@ -49,17 +50,17 @@
                 'username' => $newUser->username
             ]);
 
-            $ans["user_id"] = $users[0]["user_id"];
+            $ans['user_id'] = $users[0]['user_id'];
             return $ans;
         }
         catch(DuplicateKeyException $e){
-            $ans["error"] = "Username o email già esistente!";
+            $ans['error'] = 'Username o email già esistente!';
             return $ans;
         }
     }
 
     if(isLogged()){
-        header("Location: index.php");
+        header('Location: index.php');
         die();
     }
 
@@ -67,15 +68,15 @@
 
     if(isPost()){
         $ans = signupPost();
-        if($ans["error"] === null){
-            $_SESSION["user_id"] = $ans["user_id"];
-            header("Location: index.php");
+        if($ans['error'] === null){
+            $_SESSION['user_id'] = $ans['user_id'];
+            header('Location: index.php');
         }
     }
 
 ?>
 
-<?php require_once __DIR__ . "/template/header.php"; ?>
+<?php require_once __DIR__ . '/template/header.php'; ?>
 
     <div class="splitted-container">
         <div class="left-container form-background">
@@ -90,7 +91,7 @@
                 <input class="form-input" type="password" name="password" placeholder="Password" required>
                 <input class="form-input" type="password" name="passwordConfirm" placeholder="Conferma password" required>
                 <div class="error-banner center">
-                    <?php if($ans != null) echo $ans["error"]; ?>
+                    <?php if($ans != null) echo $ans['error']; ?>
                 </div>
                 <input id="submitButton" class="form-input form-button background-red" type="submit" name="submit" value="SIGN UP">
             </form>
@@ -110,4 +111,4 @@
 
     <script src="js/signup.js"></script>
 
-<?php require_once __DIR__ . "/template/footer.php"; ?>
+<?php require_once __DIR__ . '/template/footer.php'; ?>

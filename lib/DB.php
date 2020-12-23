@@ -1,6 +1,6 @@
 <?php
 
-    require_once __DIR__ . "/Utils.php";
+    require_once __DIR__ . '/Utils.php';
 
     /* Avoid direct page request */
     exitIfRequested(__FILE__);
@@ -12,10 +12,10 @@
         private static $instance = null;
         private $connection = null;
 
-        private $hostname = "localhost";
-        private $dbname = "ethlib";
-        private $username = "root";
-        private $password = "";
+        private $hostname = 'localhost';
+        private $dbname = 'ethlib';
+        private $username = 'root';
+        private $password = '';
 
         /*
          * Get db shared instance
@@ -41,8 +41,7 @@
             }
             catch(PDOException $e){
                 //If db connection error occurs return 500 status code (Server error)
-                http_response_code(500);
-                die("Error connecting with the database");
+                exitWithJson(['error' => 'Error connecting with the database'], 500);
             }
         }
 

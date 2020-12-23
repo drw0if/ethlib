@@ -62,11 +62,11 @@
 
         //return sanitized
         return [
-            "book_id" => $book_id,
-            "title" => $title,
-            "content" => $content,
-            "rating" => $rating,
-            "book" => Book::toObject($books[0])
+            'book_id' => $book_id,
+            'title' => $title,
+            'content' => $content,
+            'rating' => $rating,
+            'book' => Book::toObject($books[0])
         ];
     }
 

@@ -1,57 +1,51 @@
 <?php
 
     session_start();
-    require_once __DIR__ . "/lib/Utils.php";
+    require_once __DIR__ . '/lib/Utils.php';
+    require_once __DIR__ . '/lib/Models.php';
 
     function signinPost(){
         $ans = [
-            "user_id" => null,
-            "error" => null
+            'user_id' => null,
+            'error' => null
         ];
 
-        if(!isset($_POST["username"]) || !isset($_POST["password"])){
-            $ans["error"] = "Ci sono dei valori mancanti!";
+        if(!isset($_POST['username']) || !is_string($_POST['username']) ||
+            !isset($_POST['password']) || !is_string($_POST['password'])){
+            $ans['error'] = 'Valori mancanti';
             return $ans;
         }
 
-        $username = trim($_POST["username"]);
-        $password = trim($_POST["password"]);
+        $username = trim($_POST['username']);
+        $password = trim($_POST['password']);
 
-        require_once __DIR__ . "/lib/Models.php";
-
-        try{
-            $user = User::login($username, $password);
-            if($user === null){
-                $ans["error"] = "Nome utente o password sbagliati";
-                return $ans;
-            }
-
-            $ans["user_id"] = $user->user_id;
+        $user = User::login($username, $password);
+        if($user === null){
+            $ans['error'] = 'Nome utente o password sbagliati';
             return $ans;
         }
-        catch(Exception $e){
-            throwDatabaseError();
-        }
+
+        $ans['user_id'] = $user->user_id;
+        return $ans;
     }
-
 
     if(isLogged()){
         header("Location: index.php");
-        die();
+        exit();
     }
 
     $ans = null;
 
     if(isPost()){
         $ans = signinPost();
-        if($ans["error"] === null){
-            $_SESSION["user_id"] = $ans["user_id"];
-            header("Location: index.php");
+        if($ans['error'] === null){
+            $_SESSION['user_id'] = $ans['user_id'];
+            header('Location: index.php');
         }
     }
 ?>
 
-<?php require_once __DIR__ . "/template/header.php"; ?>
+<?php require_once __DIR__ . '/template/header.php'; ?>
 
     <div class="splitted-container">
         <div class="left-container form-background">
@@ -64,7 +58,7 @@
                 <input class="form-input" type="text" name="username" placeholder="Username">
                 <input class="form-input" type="password" name="password" placeholder="Password">
                 <div class="error-banner center">
-                    <?php if($ans != null) echo $ans["error"]; ?>
+                    <?php if($ans != null) echo $ans['error']; ?>
                 </div>
                 <input class="form-input form-button background-red" type="submit" name="submit" value="SIGN IN">
             </form>
@@ -86,4 +80,4 @@
         </div>
     </div>
 
-<?php require_once __DIR__ . "/template/footer.php"; ?>
+<?php require_once __DIR__ . '/template/footer.php'; ?>

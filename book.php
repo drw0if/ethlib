@@ -1,8 +1,8 @@
 <?php
     session_start();
-    require_once __DIR__ . "/lib/Utils.php";
+    require_once __DIR__ . '/lib/Utils.php';
 ?>
-<?php require_once __DIR__ . "/template/header.php" ?>
+<?php require_once __DIR__ . '/template/header.php' ?>
 
     <div class="row">
         <div class="col">
@@ -42,14 +42,10 @@
                 <input type="text" id="title" name="title" class="form-input" placeholder="Titolo">
             </label>
             <div class="rating reversed">
-            <?php
-                for($i = 5; $i > 0; $i--){
-            ?>
+            <?php for($i = 5; $i > 0; $i--){ ?>
                 <input type="radio" class="star-radio" id="rate<?php echo $i; ?>" name="rate" value="<?php echo $i; ?>"/>
                 <label for="rate<?php echo $i; ?>" class="star"></label>
-            <?php
-                }
-            ?>
+            <?php } ?>
             </div>
             <textarea name="content" id="content" cols="50" rows="10" placeholder="Contenuto"></textarea>
         </div>
@@ -93,4 +89,4 @@
     <script src="js/modal.js"></script>
     <script src="js/book.js"></script>
 
-<?php require_once __DIR__ . "/template/footer.php" ?>
+<?php require_once __DIR__ . '/template/footer.php' ?>

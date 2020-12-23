@@ -25,7 +25,7 @@
     }
 
     function isLogged(){
-        return isset($_SESSION["user_id"]) && ($_SESSION["user_id"] !== null);
+        return isset($_SESSION['user_id']) && ($_SESSION['user_id'] !== null);
     }
 
     /* TODO: implement real check */
@@ -34,11 +34,11 @@
     }
 
     function isPost(){
-        return strcmp($_SERVER["REQUEST_METHOD"], 'POST') === 0;
+        return strcmp($_SERVER['REQUEST_METHOD'], 'POST') === 0;
     }
 
     function isGet(){
-        return strcmp($_SERVER["REQUEST_METHOD"], 'GET') === 0;
+        return strcmp($_SERVER['REQUEST_METHOD'], 'GET') === 0;
     }
 
     function escapeString($string){

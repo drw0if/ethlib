@@ -1,6 +1,6 @@
 <?php
     session_start();
-    require __DIR__ . "/lib/Models.php";
+    require __DIR__ . '/lib/Models.php';
 
     $result = [];
 
@@ -12,7 +12,7 @@
     }
 ?>
 
-<?php require_once "template/header.php"; ?>
+<?php require_once 'template/header.php'; ?>
 
 <div class="row">
     <h2>Libri Pubblici</h2>
@@ -31,7 +31,7 @@
             <div class="book-row">
                 <div class="book-text">
                     <p> <?php echo $v->name; ?> </p>
-                    <p> <?php echo ($v->isbn != NULL) ? "ISBN: " . $v->isbn : '' ; ?> </p>
+                    <p> <?php echo ($v->isbn != NULL) ? 'ISBN: ' . $v->isbn : '' ; ?> </p>
                 </div>
                 <div class="book-button background-red">
                     <a href="<?php echo 'book.php?book_id=' . $v->book_id; ?>">></a>
@@ -42,4 +42,4 @@
     }
 ?>
 
-<?php require_once "template/footer.php"; ?>
+<?php require_once 'template/footer.php'; ?>

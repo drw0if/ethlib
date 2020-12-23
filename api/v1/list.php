@@ -9,7 +9,7 @@
     require_once '../../lib/Utils.php';
     require_once '../../lib/Models.php';
 
-    $query = "%";
+    $query = '%';
     $offset = 0;
 
     if(isset($_GET['query']) && is_string($_GET['query']) && !empty(trim($_GET['query']))){
