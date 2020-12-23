@@ -56,7 +56,7 @@
 
         public static function search($query, $offset = 0){
             $args = ['%' . $query . '%', $offset];
-            $query = 'SELECT `book_id`, `isbn`, `name`  FROM Book WHERE private = FALSE AND name LIKE ? LIMIT ?, 10';
+            $query = 'SELECT `book_id`, `isbn`, `name`  FROM Book WHERE private = FALSE AND name LIKE ? ORDER BY book_id DESC LIMIT ?, 10';
 
             $db = DB::getInstance();
             $ans = $db->exec($query, $args);
