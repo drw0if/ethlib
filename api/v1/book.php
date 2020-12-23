@@ -1,4 +1,9 @@
 <?php
+    /*
+        GET to get book details
+        parameters:
+        -) book_id  (required)
+    */
 
     session_start();
 
@@ -24,6 +29,7 @@
     }
 
     $book = Book::toObject($ans[0]);
+    //Recover owner data
     $ans = User::filter_by([
         'user_id' => $book->user_id
     ]);

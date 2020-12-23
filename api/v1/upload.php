@@ -1,4 +1,11 @@
 <?php
+    /*
+        POST to upload a new book
+        Login needed
+        paramters:
+        -) file     (required)
+        -) name     (required)
+    */
 
     session_start();
     require_once __DIR__ . '/../../lib/Utils.php';
@@ -56,6 +63,8 @@
     require_once __DIR__ . '/../../lib/Models.php';
 
     $b = new Book();
+
+    //Check for isbn correctness
     if(isset($_POST['isbn']) && !empty($_POST['isbn'])){
         $isbn = trim($_POST['isbn']);
 
@@ -66,6 +75,8 @@
 
         $b->isbn = $isbn;
     }
+
+    //Set new values
     $b->local_name = $localName;
     $b->file_type = $extension;
     $b->name = trim($_POST['name']);
@@ -78,13 +89,13 @@
 
     $b->user_id = $_SESSION['user_id'];
 
+    //Moving file from tmp directory to upload folder and update database
     if(move_uploaded_file($_FILES['file']['tmp_name'], $uploadfile)){
         $b->save();
         http_response_code(201);
         exitWithJson(['error' => NULL]);
     }
-    else{
-        http_response_code(500);
-        exitWithJson(['error' => 'Server error moving the file']);
-    }
+
+    http_response_code(500);
+    exitWithJson(['error' => 'Server error moving the file']);
 ?>
