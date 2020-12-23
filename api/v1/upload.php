@@ -24,7 +24,8 @@
 
     //Check for correct request
     if(!isset($_FILES['file']) || empty($_FILES['file']) ||
-        !isset($_POST['name']) || empty($_POST['name'])){
+        !isset($_POST['name']) || !is_string($_POST['name']) ||
+        empty(trim($_POST['name']))){
         http_response_code(400);
         exit();
     }
@@ -40,8 +41,7 @@
 
     //Check Content-Type header
     if(!isset($allowedMimeTypes[$_FILES['file']['type']])){
-        http_response_code(400);
-        exitWithJson(['error' => 'File not allowed, only pdf and epub accepted']);
+        exitWithJson(['error' => 'File not allowed, only pdf and epub accepted'], 400);
     }
 
     //Get file mime type
@@ -51,8 +51,7 @@
 
     //Check file mime type
     if(!isset($allowedMimeTypes[$mime])){
-        http_response_code(400);
-        exitWithJson(['error' => 'File not allowed, only pdf and epub accepted']);
+        exitWithJson(['error' => 'File not allowed, only pdf and epub accepted'], 400);
     }
 
     $extension = $allowedMimeTypes[$mime];
@@ -65,12 +64,11 @@
     $b = new Book();
 
     //Check for isbn correctness
-    if(isset($_POST['isbn']) && !empty($_POST['isbn'])){
+    if(isset($_POST['isbn']) && is_string($_POST['isbn'])){
         $isbn = trim($_POST['isbn']);
 
         if(!preg_match("/^(\d{10}|\d{13})$/", $isbn)){
-            http_response_code(400);
-            exitWithJson(['error' => 'Bad isbn']);
+            exitWithJson(['error' => 'Bad isbn'], 400);
         }
 
         $b->isbn = $isbn;
@@ -92,10 +90,8 @@
     //Moving file from tmp directory to upload folder and update database
     if(move_uploaded_file($_FILES['file']['tmp_name'], $uploadfile)){
         $b->save();
-        http_response_code(201);
-        exitWithJson(['error' => NULL]);
+        exitWithJson(['error' => NULL], 201);
     }
 
-    http_response_code(500);
-    exitWithJson(['error' => 'Server error moving the file']);
+    exitWithJson(['error' => 'Server error moving the file'], 500);
 ?>

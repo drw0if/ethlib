@@ -11,9 +11,9 @@
     require_once __DIR__ . "/../../lib/Models.php";
 
     //If no book requested die
-    if(!isset($_GET['book_id']) || empty(trim($_GET['book_id']))){
+    if(!isset($_GET['book_id']) || !is_string($_GET['book_id']) || empty(trim($_GET['book_id']))){
         http_response_code(404);
-        die();
+        exit();
     }
 
     $book_id = trim($_GET['book_id']);
@@ -25,7 +25,7 @@
     //If no book found die
     if(count($ans) == 0){
         http_response_code(404);
-        die();
+        exit();
     }
 
     $book = Book::toObject($ans[0]);
@@ -39,7 +39,7 @@
     if($book->private){
         if(!isLogged() || ($book->user_id != $_SESSION['user_id'])){
             http_response_code(404);
-            die();
+            exit();
         }
     }
 
