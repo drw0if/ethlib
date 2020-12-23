@@ -50,48 +50,6 @@ CREATE TABLE `Review`(
     FOREIGN KEY (`book_id`) REFERENCES `Book`(`book_id`)
 )ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- ---------
--- Author --
--- ---------
-CREATE TABLE `Author`(
-    `author_id` INT NOT NULL AUTO_INCREMENT,
-    `name_surname` VARCHAR(200) NOT NULL,
-
-    PRIMARY KEY (`author_id`)
-)ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- --------------
--- Author_Book --
--- --------------`
-CREATE TABLE `Author_Book`(
-    `author_id` INT NOT NULL,
-    `book_id` INT NOT NULL,
-
-    FOREIGN KEY (`author_id`) REFERENCES `Author`(`author_id`),
-    FOREIGN KEY (`book_id`) REFERENCES `Book`(`book_id`)
-)ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- --------
--- Genre --
--- --------
-CREATE TABLE `Genre`(
-    `genre_id` INT NOT NULL AUTO_INCREMENT,
-    `name` VARCHAR(200) NOT NULL,
-
-    PRIMARY KEY(`genre_id`)
-)ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- -------------
--- Genre_Book --
--- -------------
-CREATE TABLE `Genre_Book`(
-    `genre_id` INT NOT NULL,
-    `book_id` INT NOT NULL,
-
-    FOREIGN KEY (`genre_id`) REFERENCES `Genre`(`genre_id`),
-    FOREIGN KEY (`book_id`) REFERENCES `Book`(`book_id`)
-)ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
 -- username: admin
 -- password: admin
 INSERT INTO `User`

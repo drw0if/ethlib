@@ -74,26 +74,4 @@
         public $user_id;
         public $book_id;
     }
-
-    class Author extends Entity{
-        public $author_id;
-        public $name_surname;
-    }
-
-    class Genre extends Entity{
-        public $genre_id;
-        public $name;
-    }
-
-    /*
-    class Author_Book extends Entity{
-        public $author_id;
-        public $book_id;
-    }
-
-    class Genre_Book extends Entity{
-        public $genre_id;
-        public $book_id;
-    }
-    */
 ?>

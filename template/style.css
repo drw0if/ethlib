@@ -113,7 +113,7 @@ label .form-input{
     overflow: hidden;
     font-size: 20px;
     font-weight: bold;
-    word-break: break-all;
+    word-break: break-word;
 }
 
 #file-input{
