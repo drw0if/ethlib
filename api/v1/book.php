@@ -11,7 +11,7 @@
     require_once __DIR__ . "/../../lib/Models.php";
 
     //If no book requested die
-    if(!isset($_GET['book_id']) || trim(empty($_GET['book_id']))){
+    if(!isset($_GET['book_id']) || empty(trim($_GET['book_id']))){
         http_response_code(404);
         die();
     }

@@ -53,24 +53,12 @@
             $this->private = new DefaultValue();
         }
 
-        public static function lastTenPublic(){
-            $ans = Book::filter_by(['limit' => 10, 'private' => false], 'book_id', false);
-
-            foreach($ans as $k => &$v)
-                $v = static::toObject($v);
-
-            return $ans;
-        }
-
-        public static function search($query){
-            $args = ["%" . $query . "%"];
-            $query = "SELECT * FROM Book WHERE name LIKE ?";
+        public static function search($query, $offset = 0){
+            $args = ["%" . $query . "%", $offset];
+            $query = "SELECT `book_id`, `isbn`, `name`  FROM Book WHERE private = FALSE AND name LIKE ? LIMIT ?, 10";
 
             $db = DB::getInstance();
             $ans = $db->exec($query, $args);
-
-            foreach($ans as $k => &$v)
-                $v = static::toObject($v);
 
             return $ans;
         }

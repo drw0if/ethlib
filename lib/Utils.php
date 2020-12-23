@@ -52,7 +52,7 @@
     }
 
     function isNumber($str){
-        return preg_match("/^-?\d{1,}$/", $str);
+        return is_string($str) && preg_match("/^-?\d{1,}$/", $str);
     }
 
 ?>
