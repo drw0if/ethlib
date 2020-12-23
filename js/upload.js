@@ -75,22 +75,22 @@ submitButton.onclick = function() {
 
     post.onerror = post.onabort = function() {
         bar(100);
-        innerBar.style.background = "red";
-        showError("Errore nel caricamento del file");
+        innerBar.style.background = 'red';
+        showError('Errore nel caricamento del file');
     };
 
     post.onload = function(e) {
-        if(post.status === 400 || post.status === 404 || post.status === 500){
+        if(post.status != 201){
             post.onerror();
             return;
         }
 
         bar(100);
-        innerBar.style.background = "#2ecc71";
-        modal.setContent = 'Caricamento completato!';
+        innerBar.style.background = '#2ecc71';
+        modal.setContent('Caricamento completato!');
         modal.show();
     };
 
-    post.open("POST", "api/v1/upload.php");
+    post.open('POST', 'api/v1/upload.php');
     post.send(data);
 }

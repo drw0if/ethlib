@@ -64,7 +64,7 @@
     $b = new Book();
 
     //Check for isbn correctness
-    if(isset($_POST['isbn']) && is_string($_POST['isbn'])){
+    if(isset($_POST['isbn']) && is_string($_POST['isbn']) && !empty(trim($_POST['isbn']))){
         $isbn = trim($_POST['isbn']);
 
         if(!preg_match("/^(\d{10}|\d{13})$/", $isbn)){

@@ -52,9 +52,7 @@
                     </button>
                 </header>
                 <div class="modal-main">
-                    <p class="modal-text">
-                        Caricamento completato con successo!
-                    </p>
+                    <p class="modal-text"></p>
                 </div>
                 <footer>
                     <button class="modal-button background-red text-white">
