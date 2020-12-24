@@ -16,3 +16,8 @@ const makeBookRow = (book) => {
 
     return bookRow;
 }
+
+const clearChildren = function(el){
+    while(el.firstChild)
+        el.removeChild(el.lastChild)
+}

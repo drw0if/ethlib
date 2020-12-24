@@ -2,11 +2,6 @@ const modal = new Modal(document.getElementsByClassName('modal')[0]);
 
 let book_id = null;
 
-const clearChildren = function(el){
-    while(el.firstChild)
-        el.removeChild(el.lastChild)
-}
-
 const addInfo = function(name, value){
     let bookInfo = document.getElementById('book-info');
 
