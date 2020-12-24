@@ -10,6 +10,8 @@
 
     <link rel="stylesheet" href="template/style.css">
 
+    <script src="js/common.js"></script>
+
     <title>EthLib</title>
 </head>
 <body>
@@ -28,7 +30,8 @@
                 <?php if(isLogged()){ ?>
                     <li class="nav-item"><a href="index.php">Home</a></li>
                     <li class="nav-item"><a href="upload.php">Upload</a></li>
-                    <li class="nav-item"><a href="profile.php">Profilo</a></li>
+                    <li class="nav-item"><a href="bookcase.php">Libreria</a></li>
+                    <li class="nav-item"><a href="account.php">Account</a></li>
 
                     <?php if(isAdmin()){?>
                         <li class="nav-item"><a href="admin.php">Admin</a></li>
