@@ -9,7 +9,7 @@ function Modal(modal, onCloseHandler = null){
         }
     };
 
-    //Add inClick event to all the buttons
+    //Add onClick event to all the buttons
     let btns = modal.getElementsByClassName('modal-close');
     for(let j = 0; j < btns.length; j++)
         btns[j].onclick = closeHandler;
