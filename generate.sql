@@ -30,7 +30,7 @@ CREATE TABLE `Book`(
     `user_id` INT NOT NULL,
 
     PRIMARY KEY (`book_id`),
-    FOREIGN KEY (`user_id`) REFERENCES `User`(`user_id`)
+    FOREIGN KEY (`user_id`) REFERENCES `User`(`user_id`) ON DELETE CASCADE
 )ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- ---------
@@ -46,8 +46,8 @@ CREATE TABLE `Review`(
     `book_id` INT NOT NULL,
 
     PRIMARY KEY(`review_id`),
-    FOREIGN KEY (`user_id`) REFERENCES `User`(`user_id`),
-    FOREIGN KEY (`book_id`) REFERENCES `Book`(`book_id`)
+    FOREIGN KEY (`user_id`) REFERENCES `User`(`user_id`) ON DELETE CASCADE,
+    FOREIGN KEY (`book_id`) REFERENCES `Book`(`book_id`) ON DELETE CASCADE
 )ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- username: admin
