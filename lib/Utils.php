@@ -41,6 +41,10 @@
         return strcmp($_SERVER['REQUEST_METHOD'], 'GET') === 0;
     }
 
+    function isDelete(){
+        return strcmp($_SERVER['REQUEST_METHOD'], 'DELETE') === 0;
+    }
+
     function escapeString($string){
         return htmlspecialchars($string, ENT_QUOTES, 'UTF-8');
     }
