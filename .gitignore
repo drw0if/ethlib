@@ -1,3 +1,4 @@
 docs/*.pdf
 test.php
-upload/*
+upload/*.pdf
+upload/*.epub
