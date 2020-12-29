@@ -8,7 +8,7 @@
 
     $contentTypes = array_flip($allowedMimeTypes);
 
-    define('STORAGE', __DIR__ . '\..\upload\\');
+    define('STORAGE', __DIR__ . '/../upload/');
 
 
     function exitIfRequested($callingFile){

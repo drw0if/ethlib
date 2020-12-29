@@ -80,9 +80,9 @@
     $b->name = trim($_POST['name']);
 
     if(isset($_POST['private']) && $_POST['private'] === 'true'){
-        $b->private = true;
+        $b->private = 1;
     }else{
-        $b->private = false;
+        $b->private = 0;
     }
 
     $b->user_id = $_SESSION['user_id'];

@@ -61,6 +61,11 @@ submitButton.onclick = function() {
     var private = privateCheck.checked;
     var isbn = isbnInput.value;
 
+    if(isbn.length > 0 && isbn.match('^(\d{10}|\d{13})$') == null){
+        showError("L' ISBN non corrisponde al formato");
+        return;
+    }
+
     var data = new FormData();
     data.append('file', files[0]);
     data.append('name', name);
