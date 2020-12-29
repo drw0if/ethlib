@@ -1,1 +1,3 @@
-E' necessario abilitare php_fileinfo.dll in php.ini affinché la parte di upload funzioni adeguatamente
+E' necessario abilitare `php_fileinfo.dll` in `php.ini` affinché la parte di upload funzioni adeguatamente.
+
+La cartella per l'upload dei file è `upload` tuttavia è sconsigliato caricare file in una cartella raggiungibile tramite web server. Dato che per questo progetto bisognava rimanere nei limiti della singola cartella, senza poterne creare altre fuori dall'ambiente di apache, si è deciso di aggiungere un `.htaccess` che vietasse l'accesso diretto alla cartella degli upload.
