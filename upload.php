@@ -7,7 +7,7 @@
     }
 ?>
 
-<?php require_once __DIR__ . '/template/header.php"' ?>
+<?php require_once __DIR__ . '/template/header.php'; ?>
 
     <div class="row">
         <label for="file-input" id="file-label" class="book-title-box">

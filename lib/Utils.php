@@ -21,7 +21,7 @@
 
     function throwDatabaseError(){
         http_response_code(500);
-        die('Database Error, please contact the administrator');
+        exit('Database Error, please contact the administrator');
     }
 
     function isLogged(){

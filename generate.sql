@@ -4,7 +4,7 @@ USE ethlib;
 -- -------
 -- User --
 -- -------
-CREATE TABLE `User`(
+CREATE TABLE `user`(
     `user_id` INT NOT NULL AUTO_INCREMENT,
     `username` VARCHAR(100) NOT NULL UNIQUE,
     `email` VARCHAR(100) NOT NULL UNIQUE,
@@ -17,7 +17,7 @@ CREATE TABLE `User`(
 -- -------
 -- Book --
 -- -------
-CREATE TABLE `Book`(
+CREATE TABLE `book`(
     `book_id` INT NOT NULL AUTO_INCREMENT,
     `isbn` VARCHAR(13) DEFAULT NULL,
     `local_name` VARCHAR(64) NOT NULL,
@@ -30,13 +30,13 @@ CREATE TABLE `Book`(
     `user_id` INT NOT NULL,
 
     PRIMARY KEY (`book_id`),
-    FOREIGN KEY (`user_id`) REFERENCES `User`(`user_id`) ON DELETE CASCADE
+    FOREIGN KEY (`user_id`) REFERENCES `user`(`user_id`) ON DELETE CASCADE
 )ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- ---------
 -- Review --
 -- ---------
-CREATE TABLE `Review`(
+CREATE TABLE `review`(
     `review_id` INT NOT NULL AUTO_INCREMENT,
     `title` VARCHAR(100) NOT NULL,
     `content` TEXT NOT NULL,
@@ -46,13 +46,13 @@ CREATE TABLE `Review`(
     `book_id` INT NOT NULL,
 
     PRIMARY KEY(`review_id`),
-    FOREIGN KEY (`user_id`) REFERENCES `User`(`user_id`) ON DELETE CASCADE,
-    FOREIGN KEY (`book_id`) REFERENCES `Book`(`book_id`) ON DELETE CASCADE
+    FOREIGN KEY (`user_id`) REFERENCES `user`(`user_id`) ON DELETE CASCADE,
+    FOREIGN KEY (`book_id`) REFERENCES `book`(`book_id`) ON DELETE CASCADE
 )ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- username: admin
 -- password: admin
-INSERT INTO `User`
+INSERT INTO `user`
     VALUES (DEFAULT, 'admin', 'admin@ethlib.com', '$2y$10$HWqQBNpNtYo1SRUfBdAprOlvDZHDIvaLpe4QxU4APAJWixcSCL/CW', 1);
 
 
