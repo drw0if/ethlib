@@ -12,7 +12,8 @@
 
         if(!isset($_POST['email']) || !is_string($_POST['email']) ||
             !isset($_POST['password']) || !is_string($_POST['password']) ||
-            !isset($_POST['username']) || !is_string($_POST['username'])){
+            !isset($_POST['username']) || !is_string($_POST['username']) ||
+            !isset($_POST['passwordConfirm']) || !is_string($_POST['passwordConfirm'])){
             $ans['error'] = 'Ci sono dei valori mancanti!';
             return $ans;
         }

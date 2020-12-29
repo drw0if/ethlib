@@ -13,6 +13,7 @@ html, body{
 /*                      Building blocks                      */
 .row{ width: 100%; display: flex; flex-direction: row; justify-content: space-evenly; }
 .error-banner{ margin: 10px auto; color: red; }
+.success-banner{ margin: 10px auto; color: green; }
 .col{ display: flex; flex-direction: column; justify-content: space-evenly; }
 
 /*                      Sections                      */
@@ -71,6 +72,7 @@ html, body{
 
 /* Start form controls */
 .form-input{ display: block; margin: 20px auto; border: none; outline-color: black; padding: 10px; }
+.form-input:disabled{ background-color: #aeb4b8; opacity: 1; }
 .form-button{ border-radius: 10px; outline: none; font-size: 1em; padding: 7px; color: white; cursor: pointer; }
 /* End form controls*/
 
