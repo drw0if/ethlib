@@ -20,18 +20,6 @@ const update = () => {
 
             json.forEach(x => {
                 let bookRow = makeBookRow(x);
-
-                let bookButton = document.createElement('div');
-                bookButton.classList.add('book-button', 'background-red');
-
-                let anchor = document.createElement('a');
-                anchor.href = `book.php?book_id=${x['book_id']}`;
-                anchor.innerText = '>';
-                bookButton.appendChild(anchor);
-
-                bookButton.appendChild(anchor);
-                bookRow.appendChild(bookButton);
-
                 bookList.appendChild(bookRow);
             });
 

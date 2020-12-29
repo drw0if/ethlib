@@ -14,6 +14,17 @@ const makeBookRow = (book) => {
     bookRow.classList.add('book-row');
     bookRow.appendChild(bookText);
 
+    let bookButton = document.createElement('div');
+    bookButton.classList.add('book-button', 'background-red');
+
+    let anchor = document.createElement('a');
+    anchor.href = `book.php?book_id=${book['book_id']}`;
+    anchor.innerText = '>';
+    bookButton.appendChild(anchor);
+
+    bookButton.appendChild(anchor);
+    bookRow.appendChild(bookButton);
+
     return bookRow;
 }
 

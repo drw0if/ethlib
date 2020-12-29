@@ -81,6 +81,7 @@ const openLibraryCall = function(isbn, bookName){
 
 const showReviews = function(){
     let reviewDiv = document.getElementById('reviews');
+    clearChildren(reviewDiv);
 
     fetch(`api/v1/review.php?book_id=${book_id}`).then(res => {
         if(res.status != 200)
@@ -220,6 +221,7 @@ if(submitButton != null){
             modal.show();
         });
 
+        showReviews();
         showFormError('');
     }
 }

@@ -294,6 +294,10 @@ label .form-input{
     color: rgb(231, 231, 38);
 }
 
+textarea{
+    resize: none;
+}
+
 .review-top{
     display: flex;
     flex-direction: row;
