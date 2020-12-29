@@ -33,6 +33,15 @@
         return false;
     }
 
+    function checkPassword($password){
+        if(strlen($password) < 8 || !preg_match("/[a-z]/", $password) ||
+            !preg_match("/[A-Z]/", $password) || !preg_match("/\d/", $password) ||
+            !preg_match("/\W|_/", $password)){
+            return false;
+        }
+        return true;
+    }
+
     function isPost(){
         return strcmp($_SERVER['REQUEST_METHOD'], 'POST') === 0;
     }

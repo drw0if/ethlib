@@ -2,7 +2,7 @@
 
     session_start();
     require_once __DIR__ . '/lib/Utils.php';
-    require_once __DIR__ . "/lib/Models.php";
+    require_once __DIR__ . '/lib/Models.php';
 
     function signupPost(){
         $ans = [
@@ -30,10 +30,14 @@
         }
 
         $password = trim($_POST['password']);
-        if(strlen($password) < 8 || !preg_match("/[a-z]/", $password) ||
-            !preg_match("/[A-Z]/", $password) || !preg_match("/\d/", $password) ||
-            !preg_match("/\W|_/", $password)){
+        $passwordConfirm = trim($_POST['passwordConfirm']);
 
+        if($password != $passwordConfirm){
+            $ans['error'] = 'Le due password non coincidono';
+            return $ans;
+        }
+
+        if(!checkPassword($password)){
             $ans['error'] = 'La password non rispetta i criteri minimi di sicurezza!';
             return $ans;
         }
@@ -61,7 +65,7 @@
 
     if(isLogged()){
         header('Location: index.php');
-        die();
+        exit();
     }
 
     $ans = null;
@@ -71,6 +75,7 @@
         if($ans['error'] === null){
             $_SESSION['user_id'] = $ans['user_id'];
             header('Location: index.php');
+            exit();
         }
     }
 
