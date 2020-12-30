@@ -54,7 +54,7 @@
                     Sign in
                 </h2>
             </header>
-            <form method="POST">
+            <form action="#" method="POST">
                 <input class="form-input" type="text" name="username" placeholder="Username">
                 <input class="form-input" type="password" name="password" placeholder="Password">
                 <div class="error-banner center">

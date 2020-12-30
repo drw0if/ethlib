@@ -91,7 +91,7 @@
                     Sign up
                 </h2>
             </header>
-            <form id="form" method="POST">
+            <form id="form" action="#" method="POST">
                 <input class="form-input" type="text" name="username" placeholder="Username" required>
                 <input class="form-input" type="email" name="email" placeholder="Email" required>
                 <input class="form-input" type="password" name="password" placeholder="Password" required>

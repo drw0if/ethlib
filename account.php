@@ -78,7 +78,7 @@
                 Modifica i dati del tuo profilo
             </h2>
         </div>
-        <form action="." method="POST">
+        <form action="#" method="POST">
             <input class="form-input" type="text" name="username" id="username" value="<?php echo $user->username; ?>" disabled>
             <input class="form-input" type="email" name="email" id="email" placeholder="Email" value="<?php echo $user->email; ?>">
             <input class="form-input" type="password" name="oldPassword" id="oldPassword" placeholder="Password attuale">
