@@ -1,31 +1,25 @@
 /* https://flatuicolors.com/palette/ca */
 
-/*                      Normalizer                      */
-html, body{
-    margin: 0px;
-    padding: 0px;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    font-family: sans-serif;
-}
+/*                      NORMALIZER                    */
+html, body{ margin: 0px; padding: 0px; min-height: 100vh; display: flex; flex-direction: column; font-family: sans-serif; }
 
-/*                      Building blocks                      */
+
+/*                      BUILDING BLOCKS               */
 .row{ width: 100%; display: flex; flex-direction: row; justify-content: space-evenly; }
 .error-banner{ margin: 10px auto; color: red; }
 .success-banner{ margin: 10px auto; color: green; }
 .col{ display: flex; flex-direction: column; justify-content: space-evenly; }
 
-/*                      Sections                      */
 
-/* Start header */
+/*                      SECTIONS                      */
+/* Start page-header */
 .page-header{ display: flex; flex-direction: row; justify-content: space-between; align-items: center; background-color: #222f3e; color: #c8d6e5; }
-/* End header*/
+/* End page-header */
 
 /* Start logo */
 #logo{ padding: 10px; font-size: 35px; font-family: monospace; }
 #logo a{ color: inherit; text-decoration: none; }
-/* End logo*/
+/* End logo */
 
 /* Start Search Box */
 .search-box { background: #576574; height: 20px; border-radius: 40px; padding: 10px; }
@@ -34,22 +28,16 @@ html, body{
 .search-input { border: none; background: none; outline: none; float: left; color: white; font-size: 16px; transition: 0.4s; line-height: 20px; width: 0px; }
 /* End Search Box */
 
-/* Start Navbar*/
+/* Start Navbar */
 #navbar{ display: flex; flex-direction: row; align-items: center; }
 #navbar ul{ list-style: none; margin: 0px; }
 .nav-item{ display: inline; }
 .nav-item a{ color: #c8d6e5; text-decoration: none; padding-right: 10px; }
-/* End Navbar*/
+/* End Navbar */
 
-.page-content{
-    flex-grow: 2;
-    width: 80%;
-    margin: 0px auto;
-    display: flex;
-    flex-direction: column;
-    padding-top: 20px;
-    padding-bottom: 20px;
-}
+/* Start page-content */
+.page-content{ flex-grow: 2; width: 80%; margin: 0px auto; display: flex; flex-direction: column; padding-top: 20px; padding-bottom: 20px; }
+/* End page-content */
 
 /* Start footer */
 .page-footer{ background-color: #222f3e; display: flex; align-items: center; justify-content: center; }
@@ -57,18 +45,14 @@ html, body{
 .page-footer p{ text-align: center; color: #c8d6e5; font-family: monospace; margin-right: 5px; }
 /* End footer */
 
-.splitted-container{
-    margin: auto;
-    display: flex;
-    flex-direction: row;
-    border-radius: 10px;
-    box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
-}
-
-.splitted-container > div{
-    width: 50%;
-    padding: 50px;
-}
+/* Start splitted-container */
+.splitted-container{ margin: auto; display: flex; flex-direction: row; border-radius: 10px; box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22); }
+.splitted-container > div{ width: 50%; padding: 50px; }
+.left-container{ border-top-left-radius: 10px; border-bottom-left-radius: 10px; }
+.right-container{ background-color: #576574; border-top-right-radius: 10px; border-bottom-right-radius: 10px; color: #fff; }
+.right-container a{ text-decoration: none; }
+.centered-container{ display: flex; flex-direction: column; justify-content: center; }
+/* End splitted-container */
 
 /* Start form controls */
 .form-input{ display: block; margin: 20px auto; border: none; outline-color: black; padding: 10px; }
@@ -76,257 +60,66 @@ html, body{
 .form-button{ border-radius: 10px; outline: none; font-size: 1em; padding: 7px; color: white; cursor: pointer; }
 /* End form controls*/
 
-.left-container{
-    border-top-left-radius: 10px;
-    border-bottom-left-radius: 10px;
-}
-
-.centered-container{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
-
-.right-container{
-    background-color: #576574;
-    border-top-right-radius: 10px;
-    border-bottom-right-radius: 10px;
-    color: #fff;
-}
-
-.right-container a{
-    text-decoration: none;
-}
-
-label .form-input{
-    display: inline;
-}
-
-.book-title-box{
-    margin: 50px;
-    cursor: pointer;
-    width: 200px;
-    height: 282.84px;
-    border: 1px solid black;
-    text-align: center;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-    font-size: 20px;
-    font-weight: bold;
-    word-break: break-word;
-}
-
-#file-input{
-    display: none;
-}
+/* Start Book/Title book box */
+.book-title-box{ margin: 50px; cursor: pointer; width: 200px; height: 282.84px; border: 1px solid black; text-align: center; display: flex; align-items: center; justify-content: center; overflow: hidden; font-size: 20px; font-weight: bold; word-break: break-word; }
+#file-input{ display: none; }
+/* End Book/Title book box */
 
 /* Start progress bar */
-#progress-bar{
-    width: 100%;
-    margin: 20px;
-    border: 1px solid black;
-}
-
-#progress-bar > div{
-    background-color: green;
-    height: 1em;
-}
-
-#progress-bar-label{
-    margin: 0px;
-    position: absolute;
-    left: 50%;
-    z-index: 1;
-}
+#progress-bar{ width: 100%; margin: 20px; border: 1px solid black; }
+#progress-bar > div{ background-color: green; height: 1em; }
+#progress-bar-label{ margin: 0px; position: absolute; left: 50%; z-index: 1; }
 /* End progress bar */
 
-
 /* Start Modal */
-.modal{
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 1;
-    width: 100%;
-    height: 100%;
-}
-
-.modal-dialog {
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-    width: 100%;
-}
-
-.modal-content{
-    border: 1px solid black;
-    border-radius: 10px;
-    margin: auto;
-    background-color: white;
-}
-
-.modal header{
-    padding: 5px;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-}
-
-.modal header p{
-    margin: auto 0px;
-    font-weight: bold;
-    font-size: 1.25em;
-}
-
-.modal-main{
-    border-bottom: 1px solid grey;
-    border-top: 1px solid grey;
-}
-
-.modal footer{
-    padding: 5px;
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-end;
-}
-
-.modal-close{
-    display: block;
-    margin: 0;
-    border: none;
-    border-radius: 10px;
-    font-size: 1em;
-    padding: 10px;
-    background-color: white;
-    cursor: pointer;
-}
-
-.modal-button{
-    display: block;
-    border: none;
-    border-radius: 10px;
-    padding: 10px;
-    margin: 5px;
-}
-
-.modal-text{
-    padding: 10px;
-}
+.modal{ display: none; position: fixed; top: 0; left: 0; z-index: 1; width: 100%; height: 100%; }
+.modal-dialog { display: flex; flex-direction: column; height: 100%; width: 100%; }
+.modal-content{ border: 1px solid black; border-radius: 10px; margin: auto; background-color: white; }
+.modal header{ padding: 5px; display: flex; flex-direction: row; justify-content: space-between; }
+.modal header p{ margin: auto 0px; font-weight: bold; font-size: 1.25em; }
+.modal-main{ border-bottom: 1px solid grey; border-top: 1px solid grey; }
+.modal footer{ padding: 5px; display: flex; flex-direction: row; justify-content: flex-end; }
+.modal-close{ display: block; margin: 0; border: none; border-radius: 10px; font-size: 1em; padding: 10px; background-color: white; cursor: pointer; }
+.modal-button{ display: block; border: none; border-radius: 10px; padding: 10px; margin: 5px; }
+.modal-text{ padding: 10px; }
 /* End Modal */
 
-.book-row{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    margin: 10px 0;
-    border: 1px solid grey;
-    border-radius: 10px;
-    padding: 10px;
-    transition: box-shadow;
-    transition-duration: 0.2s;
-}
+/* Start book-row */
+.book-row{ display: flex; flex-direction: row; justify-content: space-between; margin: 10px 0; border: 1px solid grey; border-radius: 10px; padding: 10px; transition: box-shadow; transition-duration: 0.2s; }
+.book-row:hover{ box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22); }
+.book-text{ width: 100%; display: flex; flex-direction: row; justify-content: space-between; margin-right: 50px; align-items: center; }
+.book-button{ align-self: center; border-radius: 10px; outline: none; border: none; color: white; cursor: pointer; }
+.book-button *{ color: inherit; display: block; padding: 15px; text-decoration: none; margin: 0px; }
+/* End book-row */
 
-.book-row:hover{
-    box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
-}
+/* Start description-value row*/
+.description-name{ font-weight: bold; font-size: 17px; }
+.description-value{ font-size: 17px; font-style: italic; }
+/* End description-value row*/
 
-.book-text{
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    margin-right: 50px;
-    align-items: center;
-}
+/*
+ * Inspired from https://codepen.io/hesguru/pen/BaybqXv
+ */
+/* Start star rating */
+.star{ display: inline; font-size: 30px; color:#ccc; }
+.star:before{ content: '\2605'; }
+.star-radio{ display: none; }
+.reversed{ display: flex; flex-direction: row-reverse; justify-content: flex-end; }
+.active, .star-radio:checked ~ .star{ color: rgb(231, 231, 38); }
+/* End star rating */
 
-.book-button{
-    align-self: center;
-    border-radius: 10px;
-    outline: none;
-    border: none;
-    color: white;
-    cursor: pointer;
-}
+/* Start review */
+.review-top{ display: flex; flex-direction: row; justify-content: space-between; align-items: baseline; padding: 10px; }
+.review-title{ font-weight: bold; font-size: 20px; }
+.review-text{ padding: 20px; }
+/* End review */
 
-.book-button *{
-    color: inherit;
-    display: block;
-    padding: 15px;
-    text-decoration: none;
-    margin: 0px;
-}
+/* Start toast */
+#toast { position: fixed; bottom: 10px; left: 10px; background-color: #131516; color: white; padding: 10px; border-radius: 10px; display: none; }
+/* End toast */
 
-.description-name{
-    font-weight: bold;
-    font-size: 17px;
-}
 
-.description-value{
-    font-size: 17px;
-    font-style: italic;
-}
-
-.star{
-    display: inline;
-    font-size: 30px;
-    color:#ccc;
-}
-
-.star:before{
-    content: '\2605';
-}
-
-.star-radio{
-    display: none;
-}
-
-.reversed{
-    display: flex;
-    flex-direction: row-reverse;
-    justify-content: flex-end;
-}
-
-.active,
-.star-radio:checked ~ .star{
-    color: rgb(231, 231, 38);
-}
-
-textarea{
-    resize: none;
-}
-
-.review-top{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: baseline;
-    padding: 10px;
-}
-
-.review-title{
-    font-weight: bold;
-    font-size: 20px;
-}
-
-.review-text{
-    padding: 20px;
-}
-
-#toast {
-    position: fixed;
-    bottom: 10px;
-    left: 10px;
-    background-color: #131516;
-    color: white;
-    padding: 10px;
-    border-radius: 10px;
-    display: none;
-}
-
-/*                      Attributes                      */
+/*                      ATTRIBUTES                    */
 .center{ text-align: center; }
 .form-background{ background-color: #eee; }
 .d-block{ display: block; }
@@ -341,3 +134,8 @@ textarea{
 .m-10{ margin: 10px; }
 .reset-cursor{ cursor: default; }
 .w-100{ width: 100%; }
+
+
+/*                      MISC                          */
+textarea{ resize: none; }
+label .form-input{ display: inline; }
