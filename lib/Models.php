@@ -17,6 +17,7 @@
             $this->hash = password_hash($password, PASSWORD_DEFAULT);
         }
 
+        //Checks for user existance and password match
         public static function login($username, $password){
             $ans = static::filter_by([
                 'username' => $username
@@ -54,6 +55,7 @@
             $this->private = new DefaultValue();
         }
 
+        //Looks for book with a specified substring - CUSTOM QUERY
         public static function search($query, $offset = 0){
             $args = ['%' . $query . '%', $offset];
             $query = 'SELECT `book_id`, `isbn`, `name`  FROM book WHERE private = FALSE AND name LIKE ? ORDER BY book_id DESC LIMIT ?, 10';

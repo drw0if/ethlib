@@ -105,10 +105,6 @@
             }
         }
 
-        private function getProperties(){
-            return get_object_vars($this);
-        }
-
         public function delete(){
             $tableIdProp = $this->getTableId();
 
@@ -183,6 +179,10 @@
             return $obj;
         }
 
+        private function getProperties(){
+            return get_object_vars($this);
+        }
+
         private static function getPropertyList(){
             return get_class_vars(static::class);
         }
@@ -197,9 +197,5 @@
 
         /* Prevent cloning */
         private function __clone(){}
-    }
-
-    abstract class ManyToMany{
-
     }
 ?>
