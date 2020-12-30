@@ -32,6 +32,7 @@
             !isset($_POST['title']) || !is_string($_POST['title']) ||
             !isset($_POST['content']) || !is_string($_POST['content']) ||
             !isset($_POST['rating']) || !is_string($_POST['rating'])){
+
             exitWithJson(['error' => 'Bad format'], 400);
         }
 
@@ -41,7 +42,7 @@
         $rating = trim($_POST['rating']);
 
         //Check parameter formats
-        if(!isNumber($book_id) || !isNumber($rating) || strlen($title) == 0 || strlen($content) == 0){
+        if(!isNumber($book_id) || !isNumber($rating) || empty($title) || empty($content)){
             exitWithJson(['error' => 'Bad format'], 400);
         }
 
@@ -70,7 +71,7 @@
         ];
     }
 
-    //Post request handler
+    //POST requests handler
     function reviewPost(){
         //Check and get parameters
         $params = checkArgs();
@@ -105,6 +106,7 @@
         exitWithJson(['error' => NULL], ($review->review_id) ? 202 : 201);
     }
 
+    //GET requests handler
     function reviewGet(){
         $size = 5;
         $offset = 0;
@@ -170,5 +172,6 @@
         reviewPost();
     }
 
+    //Other type of request raise 404
     http_response_code(404);
 ?>

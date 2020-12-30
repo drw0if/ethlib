@@ -13,6 +13,7 @@
     require_once __DIR__ . '/../../lib/Utils.php';
     require_once __DIR__ . '/../../lib/Models.php';
 
+    //GET requests handler
     function bookGet($book){
 
         //Recover owner data
@@ -21,7 +22,7 @@
         ]);
         $owner = User::toObject($ans[0]);
 
-        //if book is private but you are not logged or you are not the owner die
+        //if book is private but you are not logged or you are not the owner exit
         if($book->private){
             if(!isLogged() || ($book->user_id != $_SESSION['user_id'])){
                 http_response_code(404);
@@ -39,7 +40,9 @@
         exitWithJson($ans, 200);
     }
 
+    //DELETE requests handler
     function bookDelete($book){
+        //You must be logged to delete books
         if(!isLogged()){
             http_response_code(404);
             exit();
@@ -50,19 +53,22 @@
             'user_id' => $book->user_id
         ]);
 
+        //Check if book is owned by the current user
         if($ans[0]['user_id'] != $_SESSION['user_id']){
             http_response_code(404);
             exit();
         }
 
+        //Delete the book file
         @unlink(STORAGE . $book->local_name);
+        //Delete the book from the database
         $book->delete();
 
         http_response_code(200);
         exit();
     }
 
-    //If no book requested die
+    //If no book requested exit
     if(!isset($_GET['book_id']) || !isNumber($_GET['book_id'])){
         http_response_code(404);
         exit();
@@ -74,7 +80,7 @@
         'book_id' => $book_id
     ]);
 
-    //If no book found die
+    //If no book found exit
     if(count($ans) == 0){
         http_response_code(404);
         exit();
@@ -89,5 +95,6 @@
         bookDelete($book);
     }
 
+    //Other type of request raise 404
     http_response_code(404);
 ?>
