@@ -4,6 +4,7 @@
 
     if(!isLogged()){
         header('Location: signin.php');
+        exit();
     }
 ?>
 

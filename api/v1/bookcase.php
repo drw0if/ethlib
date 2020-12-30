@@ -5,6 +5,7 @@
 
     if(!isLogged()){
         header('Location: signin.php');
+        exit();
     }
 
     $books = Book::filter_by([

@@ -5,6 +5,7 @@
 
     if(!isLogged()){
         header('Location: signin.php');
+        exit();
     }
 
     $ans = User::filter_by([
