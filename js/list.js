@@ -35,6 +35,10 @@ const update = () => {
                 return;
             }
 
+            /*
+             * Inspired by: https://stackoverflow.com/questions/6456846/how-to-do-an-infinite-scroll-in-plain-javascript
+             */
+
             document.onscroll = (json.length == 0) ? null : (() => {
                 if (bookList.scrollTop + bookList.offsetHeight + 100 > bookList.offsetHeight) {
                     document.onscroll = null;

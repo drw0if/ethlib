@@ -34,7 +34,8 @@
                     <li class="nav-item"><a href="account.php">Account</a></li>
 
                     <?php if(isAdmin()){?>
-                        <li class="nav-item"><a href="admin.php">Admin</a></li>
+                        <li class="nav-item"><a href="manage_users.php">Gestione utenti</a></li>
+                        <li class="nav-item"><a href="manage_books.php">Gestione Libri</a></li>
                     <?php }?>
 
                     <li class="nav-item"><a href="logout.php">Logout</a></li>

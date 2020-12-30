@@ -7,6 +7,7 @@
     function signupPost(){
         $ans = [
             'user_id' => null,
+            'user_type' => null,
             'error' => null,
         ];
 
@@ -56,6 +57,7 @@
             ]);
 
             $ans['user_id'] = $users[0]['user_id'];
+            $ans['user_type'] = $users[0]['user_type'];
             return $ans;
         }
         catch(DuplicateKeyException $e){
@@ -75,6 +77,7 @@
         $ans = signupPost();
         if($ans['error'] === null){
             $_SESSION['user_id'] = $ans['user_id'];
+            $_SESSION['user_type'] = $ans['user_type'];
             header('Location: index.php');
             exit();
         }

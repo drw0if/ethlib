@@ -25,12 +25,11 @@
     }
 
     function isLogged(){
-        return isset($_SESSION['user_id']) && ($_SESSION['user_id'] !== null);
+        return (isset($_SESSION['user_id']) && ($_SESSION['user_id'] !== null));
     }
 
-    /* TODO: implement real check */
     function isAdmin(){
-        return false;
+        return (isset($_SESSION['user_type']) && ($_SESSION['user_type'] == 1));
     }
 
     function checkPassword($password){

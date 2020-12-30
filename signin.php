@@ -7,6 +7,7 @@
     function signinPost(){
         $ans = [
             'user_id' => null,
+            'user_type' => null,
             'error' => null
         ];
 
@@ -26,6 +27,7 @@
         }
 
         $ans['user_id'] = $user->user_id;
+        $ans['user_type'] = $user->user_type;
         return $ans;
     }
 
@@ -40,7 +42,9 @@
         $ans = signinPost();
         if($ans['error'] === null){
             $_SESSION['user_id'] = $ans['user_id'];
+            $_SESSION['user_type'] = $ans['user_type'];
             header('Location: index.php');
+            exit();
         }
     }
 ?>
