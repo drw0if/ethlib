@@ -2,6 +2,7 @@
     session_start();
     require_once __DIR__ . '/lib/Utils.php';
 
+    //Only logged user
     if(!isLogged()){
         header('Location: signin.php');
         exit();

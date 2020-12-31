@@ -1,9 +1,9 @@
 <?php
-
     session_start();
     require_once __DIR__ . '/lib/Utils.php';
     require_once __DIR__ . '/lib/Models.php';
 
+    //POST request handler
     function signinPost(){
         $ans = [
             'user_id' => null,
@@ -11,6 +11,7 @@
             'error' => null
         ];
 
+        //check submitted data
         if(!isset($_POST['username']) || !is_string($_POST['username']) ||
             !isset($_POST['password']) || !is_string($_POST['password'])){
             $ans['error'] = 'Valori mancanti';
@@ -31,8 +32,9 @@
         return $ans;
     }
 
+    //If user is logged return to home page
     if(isLogged()){
-        header("Location: index.php");
+        header('Location: index.php');
         exit();
     }
 
@@ -40,6 +42,7 @@
 
     if(isPost()){
         $ans = signinPost();
+        //If login worked set session variables and redirect to home page
         if($ans['error'] === null){
             $_SESSION['user_id'] = $ans['user_id'];
             $_SESSION['user_type'] = $ans['user_type'];
