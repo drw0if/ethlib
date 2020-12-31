@@ -29,7 +29,7 @@
                     qualsiasi pagina per migliorare l'esperienza utente. Il caricamento della
                     lista dei libri è dinamica quindi andando in basso si avranno sempre più
                     proposte. Alcuni libri hanno a disposizione anche il codice ISBN. Per visionare
-                    la scheda di ogni libro cliccare sul corrispondente bottone <b>></b></br></br>
+                    la scheda di ogni libro cliccare sul corrispondente bottone <b>></b>.</br></br>
 
                     Per caricare nuovi libri è necessario iscriversi tramite l'apposita
                     pagina raggiungibile premendo sul tasto <b>sign up</b>, verranno chiesti un
@@ -43,6 +43,13 @@
                     selezionare il file corretto, compilare con il nome che si vuole dare al libro,
                     se si vuole si può aggiungere un ISBN e si può scegliere di renderlo pubblico o meno.
                     In fine si preme il pulsante per caricarlo e si avrà l'avanzamento della barra in basso. </br></br>
+
+                    Nel caso in cui si specifichi un ISBN valido nella scheda del libro saranno
+                    visualizzate informazioni aggiuntive prese dalle API di OpenLibrary.</br></br>
+
+                    Nella scheda dei libri pubblici è possibile aggiungere delle recensioni in modalità testuale,
+                    e tramite un voto in stelle. La scheda del libro ha anche la media dei voti per fornire
+                    una linea di massima generale sulla qualità del libro.</br></br>
 
                     Ogni utente registrato ha una sezione <b>Libreria</b> in cui vengono elencati i proprio upload.
                     In questa sezione è altresì possibile eliminare e condividere i propri libri. </br></br>
