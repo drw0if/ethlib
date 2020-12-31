@@ -7,6 +7,7 @@ const showError = function(msg) {
 }
 
 submitButton.onclick = function(evt){
+    //Check form elements validity
     for(let i = 0; i < 4; i++){
         let input = form.children[i];
         let check = input.validity;
@@ -22,6 +23,7 @@ submitButton.onclick = function(evt){
 
     let password = form.children[2].value;
 
+    //Passwords policy check
     if(password.match(/[a-z]/) == null){
         showError("Nella password serve almeno una lettera minuscola");
         return false;

@@ -18,6 +18,7 @@ const privateCheck = document.getElementById('private');
 const nameInput = document.getElementById('name');
 const isbnInput = document.getElementById('isbn');
 
+//Progress bar handler
 const bar = function(value) {
     value = Math.max(0, value);
     value = Math.min(100, value);
@@ -61,7 +62,7 @@ submitButton.onclick = function() {
     var private = privateCheck.checked;
     var isbn = isbnInput.value;
 
-    if(isbn.length > 0 && isbn.match('^(\d{10}|\d{13})$') == null){
+    if((isbn.length > 0) && (isbn.match(/^(\d{10}|\d{13})$/g) == null)){
         showError("L' ISBN non corrisponde al formato");
         return;
     }

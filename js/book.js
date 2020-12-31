@@ -2,6 +2,7 @@ const modal = new Modal(document.getElementsByClassName('modal')[0]);
 
 let book_id = null;
 
+//Create a row with label and value
 const addInfo = function(name, value){
     let bookInfo = document.getElementById('book-info');
 
@@ -25,6 +26,7 @@ const addInfo = function(name, value){
     bookInfo.append(row);
 }
 
+//Adds an img element to the book-cover area
 const setCoverImage = function(src, bookName){
     let bookCover = document.getElementById('book-cover');
 
@@ -35,6 +37,7 @@ const setCoverImage = function(src, bookName){
     bookCover.appendChild(img);
 }
 
+//Renders a 5 star row based on the value
 const addRateRow = function(el, rating){
     clearChildren(el)
 
@@ -55,11 +58,13 @@ const addRateRow = function(el, rating){
         el.appendChild(makeStar(false));
 }
 
+//Adds download link to the button
 const addDownloadLink = function(){
     let downloadLink = document.getElementById('download-button');
     downloadLink.href = `download.php?book_id=${book_id}`;
 }
 
+//Makes an Ajax call to the open library book API and renders data
 const openLibraryCall = function(isbn, bookName){
     let isbnEndpoint = `https://openlibrary.org/isbn/${isbn}.json`;
 
@@ -79,6 +84,7 @@ const openLibraryCall = function(isbn, bookName){
     })
 }
 
+//Makes an Ajax call to the review endpoint and renders data
 const showReviews = function(){
     let reviewDiv = document.getElementById('reviews');
     clearChildren(reviewDiv);
@@ -153,7 +159,6 @@ const show = function(){
 
             addRateRow(document.getElementById('rating-row'), data.rating);
             addDownloadLink();
-
         })
 
         showReviews();
@@ -179,6 +184,7 @@ const showFormError = function(msg) {
     errorBanner.innerText = msg;
 }
 
+// Form submission logic
 const submitButton = document.getElementById('submit');
 if(submitButton != null){
     submitButton.onclick = function(){

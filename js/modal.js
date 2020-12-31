@@ -1,3 +1,4 @@
+//Modal class
 function Modal(modal, onCloseHandler = null){
     this.modal = modal
 

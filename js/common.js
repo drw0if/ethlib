@@ -1,3 +1,4 @@
+//Create a book row with name, isbn and redirect button
 const makeBookRow = (book) => {
     let bookText = document.createElement('div');
     bookText.classList.add('book-text');
@@ -28,6 +29,7 @@ const makeBookRow = (book) => {
     return bookRow;
 }
 
+//Delete all children of el node
 const clearChildren = function(el){
     while(el.firstChild)
         el.removeChild(el.lastChild)
