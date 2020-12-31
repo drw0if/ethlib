@@ -1,3 +1,9 @@
+let modal = new Modal(document.getElementsByClassName('modal')[0]);
+
+document.getElementById('clip').onclick = () => {
+    modal.show();
+}
+
 let bookList = document.getElementById('bookList');
 const queryString = document.location.search;
 const getParams = new URLSearchParams(queryString);
