@@ -4,6 +4,8 @@
 ?>
 <!DOCTYPE html>
 <html lang="it">
+    <!-- Il validatore HTML da warning in questo punto dicendo che non è specificato l'attributo "lang" nel tag html,
+        tuttavia come si può notare esso è presente. Credo che l'estrattore non funzioni a dovere. -->
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">

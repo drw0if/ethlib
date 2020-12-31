@@ -8,7 +8,7 @@ const makeShareButton = (x) => {
     shareButton.classList.add('book-button', 'background-red', 'm-10');
 
     shareButton.onclick = () => {
-        navigator.clipboard.writeText(shareUrl + x.local_name);
+        copyTextToClipboard(shareUrl + x.local_name)
         toast.children[0].innerText = 'Link condivisibile copiato negli appunti';
         toast.style.display = 'block';
         setTimeout(() => {
