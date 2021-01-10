@@ -9,7 +9,8 @@
 
     $allowedMimeTypes = [
         'application/pdf' => '.pdf',           //pdf
-        'application/epub+zip' => '.epub'      //epub
+        'application/epub+zip' => '.epub',     //epub
+        'application/epub' => '.epub',         //epub
     ];
 
     $contentTypes = array_flip($allowedMimeTypes);
@@ -77,6 +78,26 @@
     //Check if a string is an integer number
     function isNumber($str){
         return is_string($str) && preg_match("/^-?\d{1,}$/", $str);
+    }
+
+    //Common procedure to serve file via HTTP
+    function serveFile($book){
+        //Open the file and suppress warnings
+        $fp = @fopen(STORAGE . $book->local_name, 'r');
+
+        //Check if fopen worked
+        if($fp === FALSE){
+            http_response_code(404);
+            exit();
+        }
+
+        //Set content type to serve the file
+        header('Content-Type: ' . $GLOBALS['contentTypes'][$book->file_type]);
+        header('Content-Disposition: attachment; filename="' . $book->name . '"');
+
+        //Send the file content
+        fpassthru($fp);
+        fclose($fp);
     }
 
 ?>

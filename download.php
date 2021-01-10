@@ -30,19 +30,5 @@
         exit();
     }
 
-    //Open the file and suppress warnings
-    $fp = @fopen(STORAGE . $book->local_name, 'r');
-
-    //Check if fopen worked
-    if($fp === FALSE){
-        http_response_code(404);
-        exit();
-    }
-
-    //Set content type to serve the file
-    header('Content-Type: ' . $contentTypes[$book->file_type]);
-
-    //Send the file content
-    fpassthru($fp);
-    fclose($fp);
+    serveFile($book);
 ?>
