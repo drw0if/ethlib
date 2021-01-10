@@ -22,8 +22,9 @@
         ]);
         $owner = User::toObject($ans[0]);
 
-        //if book is private but you are not logged or you are not the owner exit
-        if($book->private){
+        //if book is private and user is not admin
+        if($book->private && !isAdmin()){
+            //if user is not logged or is not the book owner
             if(!isLogged() || ($book->user_id != $_SESSION['user_id'])){
                 http_response_code(404);
                 exit();

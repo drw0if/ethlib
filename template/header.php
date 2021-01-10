@@ -24,7 +24,7 @@
             </a>
         </div>
         <form method="GET" action="index.php" class="search-box">
-            <input type="text" class="search-input" placeholder="George Orwell" name="query">
+            <input type="text" class="search-input" placeholder="es: 1984" name="query">
             <input type="submit" class="search-button" value="&#128269;">
         </form>
         <nav id="navbar">
