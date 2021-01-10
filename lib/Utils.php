@@ -93,7 +93,7 @@
 
         //Set content type to serve the file
         header('Content-Type: ' . $GLOBALS['contentTypes'][$book->file_type]);
-        header('Content-Disposition: attachment; filename="' . $book->name . '"');
+        header('Content-Disposition: attachment; filename="' . $book->name . $book->file_type . '"');
 
         //Send the file content
         fpassthru($fp);
